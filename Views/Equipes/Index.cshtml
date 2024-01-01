@@ -1,0 +1,78 @@
+@model IEnumerable<VoteFCSoccer.Models.LibelleVoteEquipeViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipe.EquipeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipe.Nom)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipe.Logo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipe.Pseudo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipe.League)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipe.LeaguePseudo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LibelleVote.LibelleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LibelleVote.Libelle)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipe.EquipeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipe.Nom)
+            </td>
+            <td>
+                 <img width="100px" height="100px" src="images/@item.Equipe.Logo" alt="Logo de l'équipe" />
+              @* @Html.DisplayFor(modelItem => item.Logo) *@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipe.Pseudo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipe.League)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipe.LeaguePseudo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LibelleVote.LibelleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LibelleVote.Libelle)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Equipe.EquipeId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Equipe.EquipeId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Equipe.EquipeId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,73 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Bienvenue à l'application de votes</h1>
+    
+</div>
+
+<div class="ratio ratio-21x9">
+    <iframe src="https://www.youtube.com/embed/JS6QG3Km820"></iframe>
+  </div>
+
+<div class="container-sm mt-3 bg-dark">
+    <!-- Carousel -->
+<div id="image" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#image" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#image" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#image" data-bs-slide-to="2"></button>
+  </div>
+  
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+        <a href="/Equipes">
+            <img src="images/PSG.png" alt="PSG" class="mx-auto d-block img-fluid" style="width: auto; height: 600px;" data-bs-toggle="tooltip" title="Clic!">
+        </a>
+      <div class="carousel-caption">
+        <h3>Paris Saint-Germain</h3>
+        <p class="text-dark">Championnat de France</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+        <a href="/Equipes">
+            <img src="images/OM.png" alt="OM" class="mx-auto d-block img-fluid" style="width: auto; height: 600px;" data-bs-toggle="tooltip" title="Clic!">
+        </a>
+      <div class="carousel-caption">
+        <h3>Olympique de Marseille</h3>
+        <p>Championnat de France</p>
+      </div> 
+    </div>
+    <div class="carousel-item">
+        <a href="/Equipes">
+            <img src="images/RM.png" alt="RM" class=" mx-auto d-block img-fluid" style="height: 600px;" data-bs-toggle="tooltip" title="Clic!">
+        </a>
+      
+      <div class="carousel-caption">
+        <h3 class="text-dark">Réal Madrid</h3>
+        <p>Championnat d'espagne</p>
+      </div>  
+    </div>
+  </div>
+  
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#image" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#image" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+</div>
+
+<script>
+var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+</script>
+  

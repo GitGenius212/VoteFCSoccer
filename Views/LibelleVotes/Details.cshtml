@@ -1,0 +1,77 @@
+@model VoteFCSoccer.Models.LibelleVote
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>LibelleVote</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Libelle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Libelle)
+        </dd>
+    </dl>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Nom
+            </th>
+
+            <th>
+                Logo
+            </th>
+            <th>
+                Pseudo
+            </th>
+
+            <th>
+                LeaguePseudo
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Equipes) { 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EquipeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nom)
+            </td>
+
+            <td>
+                <img width="100px" height="100px" src="../../images/@item.Logo" alt="Logo de l'équipe" />
+                
+            </td>
+
+           <td>
+                @Html.DisplayFor(modelItem => item.Pseudo)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.LeaguePseudo)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.LibelleId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

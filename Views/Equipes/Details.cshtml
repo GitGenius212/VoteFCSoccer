@@ -1,0 +1,90 @@
+@model VoteFCSoccer.Models.Equipe
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Equipe</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nom)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Logo)
+        </dt>
+        <dd class = "col-sm-10">
+            <img width="100px" height="100px" src="../../images/@Model.Logo" alt="Logo de l'équipe" />
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Pseudo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Pseudo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.League)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.League)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LeaguePseudo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LeaguePseudo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.LibelleVote)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.LibelleVote.LibelleId)
+        </dd>
+    </dl>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID
+            </th>
+            <th>
+                Votant
+            </th>
+
+            <th>
+                Equipe
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Votes) { 
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.voteId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Votant)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.EquipeId)
+            </td>
+
+            
+        </tr>
+}
+    </tbody>
+</table>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.EquipeId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
