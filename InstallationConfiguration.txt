@@ -1,0 +1,45 @@
+dotnet new mvc
+
+dotnet tool uninstall --global dotnet-aspnet-codegenerator
+dotnet tool install --global dotnet-aspnet-codegenerator
+dotnet tool uninstall --global dotnet-ef
+dotnet tool install --global dotnet-ef
+dotnet add package Microsoft.EntityFrameworkCore.Design
+dotnet add package Microsoft.EntityFrameworkCore.SQLite
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer
+dotnet add package Microsoft.EntityFrameworkCore.Tools
+
+
+dotnet aspnet-codegenerator controller -name DepenseController -m Depense -dc A23EvALouragli.Data.MvcA23EvALouragliContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlite
+
+
+dotnet aspnet-codegenerator controller -name CategorieController -m Categorie -dc A23EvALouragli.Data.MvcA23EvALouragliContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries --databaseProvider sqlite
+
+
+
+
+dotnet ef migrations add InitialCreate
+dotnet ef database update
+
+
+//Génerer les API
+dotnet aspnet-codegenerator controller -name DepenseAPIController -async -api -m Depense -dc A23EvALouragli.Data.MvcA23EvALouragliContext -outDir Controllers
+
+dotnet aspnet-codegenerator controller -name EquipesAPIController -async -api -m Equipe -dc VoteFCSoccer.Data.MvcVoteEquipeContext -outDir Controllers
+
+dotnet aspnet-codegenerator controller -name LibelleVoteAPIController -async -api -m LibelleVote -dc VoteFCSoccer.Data.MvcVoteEquipeContext -outDir Controllers
+
+dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
+dotnet tool install -g Microsoft.Web.LibraryManager.Cli
+
+libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files dist/browser/signalr.js
+
+using A23EvALouragli.Hubs;
+builder.Services.AddSignalR();
+builder.Services.AddControllers()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+        // Autres configurations si nécessaires
+    });
