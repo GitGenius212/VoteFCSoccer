@@ -4,6 +4,7 @@
 
 C'est une application web pour suivre un événement de vote. 
 L’application  permet de :
+
 1- créer/modifier/supprimer un vote et les candidats à ce vote
 
 2- afficher le vote et saisir des votes contenant les noms des votants.
