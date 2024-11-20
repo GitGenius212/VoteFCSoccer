@@ -13,3 +13,7 @@ L’application  permet de :
 
 4- permettre de voir les noms des votants pour un candidat si l’on clique sur cette ce candidat à
    partir de l’écran de synthèse.
+
+   Commandes :
+      dotnet run  (sur vscode)
+      localhost:5251 (sur le web)
