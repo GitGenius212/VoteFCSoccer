@@ -53,7 +53,7 @@ namespace VoteFCSoccer.Controllers
         // GET: Votes/Create
         public IActionResult Create()
         {
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "EquipeId");
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom");
             return View();
         }
 
@@ -70,7 +70,7 @@ namespace VoteFCSoccer.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "EquipeId", vote.EquipeId);
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom", vote.EquipeId);
             return View(vote);
         }
 
