@@ -87,7 +87,7 @@ namespace VoteFCSoccer.Controllers
             {
                 return NotFound();
             }
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "EquipeId", vote.EquipeId);
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom", vote.EquipeId);
             return View(vote);
         }
 
@@ -123,7 +123,7 @@ namespace VoteFCSoccer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "EquipeId", vote.EquipeId);
+            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom", vote.EquipeId);
             return View(vote);
         }
 

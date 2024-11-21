@@ -97,7 +97,7 @@ namespace VoteFCSoccer.Controllers
             {
                 return NotFound();
             }
-            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "LibelleId", equipe.LibelleId);
+            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", equipe.LibelleId);
             return View(equipe);
         }
 
@@ -133,7 +133,7 @@ namespace VoteFCSoccer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "LibelleId", equipe.LibelleId);
+            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", equipe.LibelleId);
             return View(equipe);
         }
 
