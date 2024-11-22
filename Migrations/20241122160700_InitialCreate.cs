@@ -24,23 +24,20 @@ namespace VoteFCSoccer.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Equipe",
+                name: "Candidat",
                 columns: table => new
                 {
-                    EquipeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CandidatId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Nom = table.Column<string>(type: "TEXT", nullable: true),
                     Logo = table.Column<string>(type: "TEXT", nullable: true),
-                    Pseudo = table.Column<string>(type: "TEXT", nullable: true),
-                    League = table.Column<string>(type: "TEXT", nullable: true),
-                    LeaguePseudo = table.Column<string>(type: "TEXT", nullable: true),
                     LibelleId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Equipe", x => x.EquipeId);
+                    table.PrimaryKey("PK_Candidat", x => x.CandidatId);
                     table.ForeignKey(
-                        name: "FK_Equipe_LibelleVote_LibelleId",
+                        name: "FK_Candidat_LibelleVote_LibelleId",
                         column: x => x.LibelleId,
                         principalTable: "LibelleVote",
                         principalColumn: "LibelleId",
@@ -54,28 +51,28 @@ namespace VoteFCSoccer.Migrations
                     voteId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Votant = table.Column<string>(type: "TEXT", nullable: true),
-                    EquipeId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CandidatId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Vote", x => x.voteId);
                     table.ForeignKey(
-                        name: "FK_Vote_Equipe_EquipeId",
-                        column: x => x.EquipeId,
-                        principalTable: "Equipe",
-                        principalColumn: "EquipeId",
+                        name: "FK_Vote_Candidat_CandidatId",
+                        column: x => x.CandidatId,
+                        principalTable: "Candidat",
+                        principalColumn: "CandidatId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Equipe_LibelleId",
-                table: "Equipe",
+                name: "IX_Candidat_LibelleId",
+                table: "Candidat",
                 column: "LibelleId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Vote_EquipeId",
+                name: "IX_Vote_CandidatId",
                 table: "Vote",
-                column: "EquipeId");
+                column: "CandidatId");
         }
 
         /// <inheritdoc />
@@ -85,7 +82,7 @@ namespace VoteFCSoccer.Migrations
                 name: "Vote");
 
             migrationBuilder.DropTable(
-                name: "Equipe");
+                name: "Candidat");
 
             migrationBuilder.DropTable(
                 name: "LibelleVote");

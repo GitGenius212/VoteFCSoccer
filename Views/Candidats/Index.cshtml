@@ -1,4 +1,4 @@
-@model IEnumerable<VoteFCSoccer.Models.LibelleVoteEquipeViewModel>
+@model IEnumerable<VoteFCSoccer.Models.LibelleVoteCandidatViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Equipe.EquipeId)
+                @Html.DisplayNameFor(model => model.Candidat.CandidatId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Equipe.Nom)
+                @Html.DisplayNameFor(model => model.Candidat.Nom)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Equipe.Logo)
+                @Html.DisplayNameFor(model => model.Candidat.Logo)
             </th>
             
             <th>
@@ -35,13 +35,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Equipe.EquipeId)
+                @Html.DisplayFor(modelItem => item.Candidat.CandidatId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Equipe.Nom)
+                @Html.DisplayFor(modelItem => item.Candidat.Nom)
             </td>
             <td>
-                 <img width="100px" height="100px" src="images/@item.Equipe.Logo" alt="Logo de l'équipe" />
+                 <img width="100px" height="100px" src="images/@item.Candidat.Logo" alt="Logo de l'équipe" />
               @* @Html.DisplayFor(modelItem => item.Logo) *@
             </td>
             
@@ -52,9 +52,9 @@
                 @Html.DisplayFor(modelItem => item.LibelleVote.Libelle)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Equipe.EquipeId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Equipe.EquipeId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Equipe.EquipeId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.Candidat.CandidatId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Candidat.CandidatId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Candidat.CandidatId">Delete</a>
             </td>
         </tr>
 }

@@ -12,9 +12,9 @@ namespace VoteFCSoccer.Controllers
 {
     public class LibelleVotesController : Controller
     {
-        private readonly MvcVoteEquipeContext _context;
+        private readonly MvcVoteCandidatContext _context;
 
-        public LibelleVotesController(MvcVoteEquipeContext context)
+        public LibelleVotesController(MvcVoteCandidatContext context)
         {
             _context = context;
         }
@@ -40,14 +40,14 @@ namespace VoteFCSoccer.Controllers
                 return NotFound();
             }
 
-            var equipes = from e in _context.Equipe
+            var equipes = from e in _context.Candidat
                           select e;
 
             equipes = equipes.Where(s => s.LibelleId == libelleVote.LibelleId);
-            libelleVote.Equipes = await equipes.ToListAsync();
+            libelleVote.Candidats = await equipes.ToListAsync();
 
-            if(libelleVote.Equipes == null)
-                libelleVote.Equipes = default!;
+            if(libelleVote.Candidats == null)
+                libelleVote.Candidats = default!;
 
 
             return View(libelleVote);

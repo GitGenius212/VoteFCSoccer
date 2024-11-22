@@ -1,11 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 namespace VoteFCSoccer.Models;
-public class Equipe
+public class Candidat
 {
 
 [Display(Name = "ID")]
-public int EquipeId { get; set; }
+public int CandidatId { get; set; }
 public string? Nom { get; set; }
 public string? Logo { get; set; }
 

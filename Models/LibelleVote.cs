@@ -9,6 +9,6 @@ public class LibelleVote
 public int LibelleId { get; set; }
 public string? Libelle { get; set; }
 
-public ICollection<Equipe>? Equipes { get; set; }
+public ICollection<Candidat>? Candidats { get; set; }
 
 }

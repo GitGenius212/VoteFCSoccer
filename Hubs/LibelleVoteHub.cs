@@ -5,7 +5,7 @@ namespace VoteFCSoccer.Hubs
     {
         public async Task SendMessage()
         {
-        await Clients.All.SendAsync("EquipeChange");
+        await Clients.All.SendAsync("LibelleVoteChange");
         }
     }
 }

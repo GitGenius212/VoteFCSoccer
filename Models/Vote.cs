@@ -9,9 +9,9 @@ public int voteId { get; set; }
 public string? Votant { get; set; }
 
 
-[ForeignKey("Equipe")]
-public int EquipeId { get; set; }
-public Equipe? Equipe { get; set; }
+[ForeignKey("Candidat")]
+public int CandidatId { get; set; }
+public Candidat? Candidat { get; set; }
 
 
 

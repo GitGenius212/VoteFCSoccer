@@ -10,28 +10,28 @@ using VoteFCSoccer.Models;
 
 namespace VoteFCSoccer.Controllers
 {
-    public class EquipesController : Controller
+    public class CandidatsController : Controller
     {
-        private readonly MvcVoteEquipeContext _context;
+        private readonly MvcVoteCandidatContext _context;
 
-        public EquipesController(MvcVoteEquipeContext context)
+        public CandidatsController(MvcVoteCandidatContext context)
         {
             _context = context;
         }
 
-        // GET: Equipes
+        // GET: Candidats
         public async Task<IActionResult> Index()
         {
-            var query = from equipe in _context.Set<Equipe>() 
+            var query = from candidat in _context.Set<Candidat>() 
                          join libelleVote in _context.Set<LibelleVote>()
-                         on equipe.LibelleId equals libelleVote.LibelleId
-                         select new LibelleVoteEquipeViewModel 
-                         {Equipe = equipe, LibelleVote = libelleVote};
+                         on candidat.LibelleId equals libelleVote.LibelleId
+                         select new LibelleVoteCandidatViewModel 
+                         {Candidat = candidat, LibelleVote = libelleVote};
 
             return View(await query.ToListAsync());
         }
 
-        // GET: Equipes/Details/5
+        // GET: Candidats/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,10 +39,10 @@ namespace VoteFCSoccer.Controllers
                 return NotFound();
             }
 
-            var equipe = await _context.Equipe
+            var candidat = await _context.Candidat
                 .Include(e => e.LibelleVote)
-                .FirstOrDefaultAsync(m => m.EquipeId == id);
-            if (equipe == null)
+                .FirstOrDefaultAsync(m => m.CandidatId == id);
+            if (candidat == null)
             {
                 return NotFound();
             }
@@ -50,41 +50,41 @@ namespace VoteFCSoccer.Controllers
             var votes = from v in _context.Vote
                         select v;
             
-            votes = votes.Where(s => s.EquipeId == equipe.EquipeId);
+            votes = votes.Where(s => s.CandidatId == candidat.CandidatId);
 
-            equipe.Votes = await votes.ToListAsync();
+            candidat.Votes = await votes.ToListAsync();
 
-            if(equipe.Votes == null)
-                equipe.Votes = default!;
+            if(candidat.Votes == null)
+                candidat.Votes = default!;
 
-            return View(equipe);
+            return View(candidat);
         }
 
-        // GET: Equipes/Create
+        // GET: Candidats/Create
         public IActionResult Create()
         {
             ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle");
             return View();
         }
 
-        // POST: Equipes/Create
+        // POST: Candidats/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipeId,Nom,Logo,LibelleId")] Equipe equipe)
+        public async Task<IActionResult> Create([Bind("CandidatId,Nom,Logo,LibelleId")] Candidat candidat)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(equipe);
+                _context.Add(candidat);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", equipe.LibelleId);
-            return View(equipe);
+            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", candidat.LibelleId);
+            return View(candidat);
         }
 
-        // GET: Equipes/Edit/5
+        // GET: Candidats/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -92,23 +92,23 @@ namespace VoteFCSoccer.Controllers
                 return NotFound();
             }
 
-            var equipe = await _context.Equipe.FindAsync(id);
-            if (equipe == null)
+            var candidat = await _context.Candidat.FindAsync(id);
+            if (candidat == null)
             {
                 return NotFound();
             }
-            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", equipe.LibelleId);
-            return View(equipe);
+            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", candidat.LibelleId);
+            return View(candidat);
         }
 
-        // POST: Equipes/Edit/5
+        // POST: Candidats/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipeId,Nom,Logo,LibelleId")] Equipe equipe)
+        public async Task<IActionResult> Edit(int id, [Bind("CandidatId,Nom,Logo,LibelleId")] Candidat candidat)
         {
-            if (id != equipe.EquipeId)
+            if (id != candidat.CandidatId)
             {
                 return NotFound();
             }
@@ -117,12 +117,12 @@ namespace VoteFCSoccer.Controllers
             {
                 try
                 {
-                    _context.Update(equipe);
+                    _context.Update(candidat);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!EquipeExists(equipe.EquipeId))
+                    if (!CandidatExists(candidat.CandidatId))
                     {
                         return NotFound();
                     }
@@ -133,11 +133,11 @@ namespace VoteFCSoccer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", equipe.LibelleId);
-            return View(equipe);
+            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", candidat.LibelleId);
+            return View(candidat);
         }
 
-        // GET: Equipes/Delete/5
+        // GET: Candidats/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -145,35 +145,35 @@ namespace VoteFCSoccer.Controllers
                 return NotFound();
             }
 
-            var equipe = await _context.Equipe
+            var candidat = await _context.Candidat
                 .Include(e => e.LibelleVote)
-                .FirstOrDefaultAsync(m => m.EquipeId == id);
-            if (equipe == null)
+                .FirstOrDefaultAsync(m => m.CandidatId == id);
+            if (candidat == null)
             {
                 return NotFound();
             }
 
-            return View(equipe);
+            return View(candidat);
         }
 
-        // POST: Equipes/Delete/5
+        // POST: Candidats/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var equipe = await _context.Equipe.FindAsync(id);
-            if (equipe != null)
+            var candidat = await _context.Candidat.FindAsync(id);
+            if (candidat != null)
             {
-                _context.Equipe.Remove(equipe);
+                _context.Candidat.Remove(candidat);
             }
 
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EquipeExists(int id)
+        private bool CandidatExists(int id)
         {
-            return _context.Equipe.Any(e => e.EquipeId == id);
+            return _context.Candidat.Any(c => c.CandidatId == id);
         }
     }
 }

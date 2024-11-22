@@ -7,14 +7,14 @@ using VoteFCSoccer.Models;
 
 namespace VoteFCSoccer.Data
 {
-    public class MvcVoteEquipeContext : DbContext
+    public class MvcVoteCandidatContext : DbContext
     {
-        public MvcVoteEquipeContext (DbContextOptions<MvcVoteEquipeContext> options)
+        public MvcVoteCandidatContext (DbContextOptions<MvcVoteCandidatContext> options)
             : base(options)
         {
         }
 
-        public DbSet<VoteFCSoccer.Models.Equipe> Equipe { get; set; } = default!;
+        public DbSet<VoteFCSoccer.Models.Candidat> Candidat { get; set; } = default!;
         public DbSet<VoteFCSoccer.Models.Vote> Vote { get; set; } = default!;
         public DbSet<VoteFCSoccer.Models.LibelleVote> LibelleVote { get; set; } = default!;
     }

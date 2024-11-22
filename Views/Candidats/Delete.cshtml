@@ -1,4 +1,4 @@
-@model VoteFCSoccer.Models.Equipe
+@model VoteFCSoccer.Models.Candidat
 
 @{
     ViewData["Title"] = "Delete";
@@ -33,7 +33,7 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="EquipeId" />
+        <input type="hidden" asp-for="CandidatId" />
         <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>

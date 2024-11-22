@@ -12,9 +12,9 @@ namespace VoteFCSoccer.Controllers
 {
     public class VotesController : Controller
     {
-        private readonly MvcVoteEquipeContext _context;
+        private readonly MvcVoteCandidatContext _context;
 
-        public VotesController(MvcVoteEquipeContext context)
+        public VotesController(MvcVoteCandidatContext context)
         {
             _context = context;
         }
@@ -23,10 +23,10 @@ namespace VoteFCSoccer.Controllers
         public async Task<IActionResult> Index()
         {
             var query = from vote in _context.Set<Vote>() 
-                         join equipe in _context.Set<Equipe>()
-                         on vote.EquipeId equals equipe.EquipeId
-                         select new LibelleVoteEquipeViewModel 
-                         {Vote = vote, Equipe = equipe};
+                         join candidat in _context.Set<Candidat>()
+                         on vote.CandidatId equals candidat.CandidatId
+                         select new LibelleVoteCandidatViewModel 
+                         {Vote = vote, Candidat = candidat};
 
             return View(await query.ToListAsync());
         }
@@ -40,7 +40,7 @@ namespace VoteFCSoccer.Controllers
             }
 
             var vote = await _context.Vote
-                .Include(v => v.Equipe)
+                .Include(v => v.Candidat)
                 .FirstOrDefaultAsync(m => m.voteId == id);
             if (vote == null)
             {
@@ -53,7 +53,7 @@ namespace VoteFCSoccer.Controllers
         // GET: Votes/Create
         public IActionResult Create()
         {
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom");
+            ViewData["CandidatId"] = new SelectList(_context.Candidat, "CandidatId", "Nom");
             return View();
         }
 
@@ -62,7 +62,7 @@ namespace VoteFCSoccer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("voteId,Votant,EquipeId")] Vote vote)
+        public async Task<IActionResult> Create([Bind("voteId,Votant,CandidatId")] Vote vote)
         {
             if (ModelState.IsValid)
             {
@@ -70,7 +70,7 @@ namespace VoteFCSoccer.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom", vote.EquipeId);
+            ViewData["CandidatId"] = new SelectList(_context.Candidat, "CandidatId", "Nom", vote.CandidatId);
             return View(vote);
         }
 
@@ -87,7 +87,7 @@ namespace VoteFCSoccer.Controllers
             {
                 return NotFound();
             }
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom", vote.EquipeId);
+            ViewData["CandidatId"] = new SelectList(_context.Candidat, "EquipeId", "Nom", vote.CandidatId);
             return View(vote);
         }
 
@@ -96,7 +96,7 @@ namespace VoteFCSoccer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("voteId,Votant,EquipeId")] Vote vote)
+        public async Task<IActionResult> Edit(int id, [Bind("voteId,Votant,CandidatId")] Vote vote)
         {
             if (id != vote.voteId)
             {
@@ -123,7 +123,7 @@ namespace VoteFCSoccer.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EquipeId"] = new SelectList(_context.Equipe, "EquipeId", "Nom", vote.EquipeId);
+            ViewData["CandidatId"] = new SelectList(_context.Candidat, "CandidatId", "Nom", vote.CandidatId);
             return View(vote);
         }
 
@@ -136,7 +136,7 @@ namespace VoteFCSoccer.Controllers
             }
 
             var vote = await _context.Vote
-                .Include(v => v.Equipe)
+                .Include(v => v.Candidat)
                 .FirstOrDefaultAsync(m => m.voteId == id);
             if (vote == null)
             {

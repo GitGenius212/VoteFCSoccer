@@ -1,8 +1,8 @@
 namespace VoteFCSoccer.Models;
 
-public class LibelleVoteEquipeViewModel{
+public class LibelleVoteCandidatViewModel{
     public LibelleVote? LibelleVote {get; set;}
-    public Equipe? Equipe {get; set;}
+    public Candidat? Candidat {get; set;}
     public Vote? Vote {get; set;}
 
 }
