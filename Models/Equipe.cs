@@ -8,9 +8,7 @@ public class Equipe
 public int EquipeId { get; set; }
 public string? Nom { get; set; }
 public string? Logo { get; set; }
-public string? Pseudo { get; set; }
-public string? League { get; set; }
-public string? LeaguePseudo { get; set; }
+
 
 [ForeignKey("LibelleVote")]
 public int LibelleId { get; set; }

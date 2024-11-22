@@ -22,12 +22,6 @@ namespace VoteFCSoccer.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("League")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("LeaguePseudo")
-                        .HasColumnType("TEXT");
-
                     b.Property<int>("LibelleId")
                         .HasColumnType("INTEGER");
 
@@ -35,9 +29,6 @@ namespace VoteFCSoccer.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nom")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Pseudo")
                         .HasColumnType("TEXT");
 
                     b.HasKey("EquipeId");

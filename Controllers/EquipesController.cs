@@ -72,7 +72,7 @@ namespace VoteFCSoccer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EquipeId,Nom,Logo,Pseudo,League,LeaguePseudo,LibelleId")] Equipe equipe)
+        public async Task<IActionResult> Create([Bind("EquipeId,Nom,Logo,LibelleId")] Equipe equipe)
         {
             if (ModelState.IsValid)
             {
@@ -106,7 +106,7 @@ namespace VoteFCSoccer.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("EquipeId,Nom,Logo,Pseudo,League,LeaguePseudo,LibelleId")] Equipe equipe)
+        public async Task<IActionResult> Edit(int id, [Bind("EquipeId,Nom,Logo,LibelleId")] Equipe equipe)
         {
             if (id != equipe.EquipeId)
             {
