@@ -81,7 +81,7 @@ namespace VoteFCSoccer.Controllers
             _context.LibelleVote.Add(libelleVote);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLibelleVote", new { id = libelleVote.LibelleId }, libelleVote);
+            return CreatedAtAction(nameof(GetLibelleVote), new { id = libelleVote.LibelleId }, libelleVote);
         }
 
         // DELETE: api/LibelleVoteAPI/5

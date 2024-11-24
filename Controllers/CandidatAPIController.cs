@@ -23,16 +23,33 @@ namespace VoteFCSoccer.Controllers
 
         // GET: api/CandidatAPI
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Candidat>>> GetCandidat()
+        public async Task<ActionResult<IEnumerable<CandidatViewModel>>> GetCandidat()
         {
-            return await _context.Candidat.ToListAsync();
+            var candidats = await _context.Candidat
+                .Include(c => c.Votes)
+                .Include(c => c.LibelleVote)
+                .Select(c => new CandidatViewModel
+                {
+                    CandidatId = c.CandidatId,
+                    Nom = c.Nom,
+                    Logo = c.Logo,
+                    Votes = c.Votes != null ? c.Votes : null, 
+                    LibelleVote = c.LibelleVote != null ? c.LibelleVote.Libelle : "N/A"
+                })
+                .ToListAsync();
+
+            return candidats;
+            
         }
 
         // GET: api/CandidatAPI/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Candidat>> GetCandidat(int id)
         {
-            var candidat = await _context.Candidat.FindAsync(id);
+            var candidat = await _context.Candidat
+            .Include(c => c.Votes)
+            .Include(c => c.LibelleVote)
+        .FirstOrDefaultAsync(c => c.CandidatId == id);
 
             if (candidat == null)
             {
