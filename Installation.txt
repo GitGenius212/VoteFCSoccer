@@ -24,7 +24,7 @@ dotnet ef database update
 
 
 //Génerer les API
-dotnet aspnet-codegenerator controller -name DepenseAPIController -async -api -m Depense -dc A23EvALouragli.Data.MvcA23EvALouragliContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name VoteAPIController -async -api -m Vote -dc VoteFCSoccer.Data.MvcVoteCandidatContext -outDir Controllers
 
 dotnet aspnet-codegenerator controller -name EquipesAPIController -async -api -m Equipe -dc VoteFCSoccer.Data.MvcVoteEquipeContext -outDir Controllers
 
