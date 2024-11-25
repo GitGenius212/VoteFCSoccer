@@ -21,21 +21,15 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.LibelleId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Libelle)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.LibelleId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.LibelleId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.LibelleId">Delete</a>
-            </td>
-        </tr>
-}
+    <tbody id="libelleVotes">
+
     </tbody>
 </table>
+
+@section Scripts{
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/LibelleVote.js"></script>
+    <script type="text/javascript">
+        getLibelleVotes();
+    </script>
+}

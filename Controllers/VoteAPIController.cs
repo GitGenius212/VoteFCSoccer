@@ -25,14 +25,20 @@ namespace VoteFCSoccer.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Vote>>> GetVote()
         {
-            return await _context.Vote.ToListAsync();
+            var votes = await _context.Vote
+                .Include(v => v.Candidat)
+                .ToListAsync();
+
+        return votes;
         }
 
         // GET: api/VoteAPI/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Vote>> GetVote(int id)
         {
-            var vote = await _context.Vote.FindAsync(id);
+            var vote = await _context.Vote
+            .Include(v => v.Candidat) // Charge les données de l'équipe pour le vote spécifique
+            .FirstOrDefaultAsync(v => v.voteId == id);
 
             if (vote == null)
             {

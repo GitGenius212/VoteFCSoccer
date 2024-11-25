@@ -15,13 +15,8 @@ builder.Services.AddSignalR();
 builder.Services.AddControllersWithViews()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 //Swagger OpenApi----------------------------
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddOpenApiDocument(config =>
-{
-    config.DocumentName = "VotesAPI";
-    config.Title = "VotesAPI v1";
-    config.Version = "v1";
-});
+
+builder.Services.AddOpenApiDocument();
 //Swagger------------------------------------
 
 
@@ -33,13 +28,7 @@ if (!app.Environment.IsDevelopment())
 {
     //SwaggerOpenApi-------------------
     app.UseOpenApi();
-    app.UseSwaggerUi(config =>
-    {
-        config.DocumentTitle = "VotesAPI";
-        config.Path = "/swagger";
-        config.DocumentPath = "/swagger/{documentName}/swagger.json";
-        config.DocExpansion = "list";
-    });
+    app.UseSwaggerUi();
     //OpenAPI--------------------------
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.

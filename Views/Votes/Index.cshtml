@@ -36,8 +36,10 @@
     </tbody>
 </table>
 
-<script src="~/js/signalr/dist/browser/signalr.js"></script>
-<script src="~/js/Vote.js" asp-append-version="true"></script>
+@section Scripts{
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Vote.js"></script>
     <script type="text/javascript">
         getVotes();
     </script>
+}

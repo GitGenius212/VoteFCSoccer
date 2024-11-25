@@ -25,14 +25,16 @@ namespace VoteFCSoccer.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LibelleVote>>> GetLibelleVote()
         {
-            return await _context.LibelleVote.ToListAsync();
+            return await _context.LibelleVote.Include(l => l.Candidats).ToListAsync();
         }
 
         // GET: api/LibelleVoteAPI/5
         [HttpGet("{id}")]
         public async Task<ActionResult<LibelleVote>> GetLibelleVote(int id)
         {
-            var libelleVote = await _context.LibelleVote.FindAsync(id);
+            var libelleVote = await _context.LibelleVote
+            .Include(l => l.Candidats)
+            .FirstOrDefaultAsync(l => l.LibelleId == id);
 
             if (libelleVote == null)
             {

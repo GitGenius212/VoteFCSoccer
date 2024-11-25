@@ -8,13 +8,16 @@ function getCandidats() {
     .catch(error => console.error('Unable to get candidats.', error));
 }
 
-/* function addItem() {
-  const addNameTextbox = document.getElementById('add-name');
+ function addCandidat() {
+  var nom = document.getElementById("nom").value;
+    var logo = document.getElementById("logo").value;
+    var libelleId = document.getElementById("libelleId").value;
 
-  const item = {
-    isComplete: false,
-    name: addNameTextbox.value.trim()
-  };
+  const candidat = {
+    nom: nom,
+    logo: logo,
+    libelleId: libelleId 
+};
 
   fetch(uri, {
     method: 'POST',
@@ -22,16 +25,13 @@ function getCandidats() {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(item)
+    body: JSON.stringify(candidat)
   })
     .then(response => response.json())
-    .then(() => {
-        getCandidats();
-      addNameTextbox.value = '';
-    })
     .catch(error => console.error('Unable to add item.', error));
 }
 
+/*
 function deleteItem(id) {
   fetch(`${uri}/${id}`, {
     method: 'DELETE'
@@ -94,9 +94,9 @@ function _displayItems(data) {
         <td>${candidat.libelleVote ? candidat.libelleId : 'N/A'}</td>
         <td>${candidat.libelleVote ? candidat.libelleVote : 'N/A'}</td>
         <td>
-            <a href="/Equipes/Edit/${candidat.candidatId}">Edit</a> |
-            <a href="/Equipes/Details/${candidat.candidatId}">Details</a>
-            <a href="/Equipes/Delete/${candidat.candidatId}">Delete</a>
+            <a href="/Candidats/Edit/${candidat.candidatId}">Edit</a> |
+            <a href="/Candidats/Details/${candidat.candidatId}">Details</a>
+            <a href="/Candidats/Delete/${candidat.candidatId}">Delete</a>
         </td>
     </tr>`;
     $candidats.append($(template));

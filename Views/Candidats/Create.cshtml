@@ -1,31 +1,29 @@
 @model VoteFCSoccer.Models.Candidat
 
-@{
-    ViewData["Title"] = "Create";
-}
+
 
 <h1>Create</h1>
 
-<h4>Equipe</h4>
+<h4>Candidat</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form  asp-action="api/CandidatApi" onsubmit="addCandidat()" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nom" class="control-label"></label>
-                <input asp-for="Nom" class="form-control" />
+                <input asp-for="Nom" class="form-control" id="nom"/>
                 <span asp-validation-for="Nom" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Logo" class="control-label"></label>
-                <input asp-for="Logo" class="form-control" />
+                <input asp-for="Logo" class="form-control" id="logo"/>
                 <span asp-validation-for="Logo" class="text-danger"></span>
             </div>
             
             <div class="form-group">
                 <label asp-for="LibelleId" class="control-label">Libelles</label>
-                <select asp-for="LibelleId" class ="form-control" asp-items="ViewBag.LibelleId"></select>
+                <select asp-for="LibelleId" id="libelleId" class ="form-control" asp-items="ViewBag.LibelleId"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -40,4 +38,6 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Candidat.js"></script>
 }
