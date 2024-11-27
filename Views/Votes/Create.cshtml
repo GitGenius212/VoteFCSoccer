@@ -35,6 +35,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Vote.js"></script>
     <script>
         document.getElementById("createVote").addEventListener("click", function (event) {
         event.preventDefault();
@@ -63,6 +64,13 @@
         } else {
             // Affiche un message d'erreur si la création échoue
             alert("Erreur lors de la création du vote.");
+        }
+    })
+    .then(async () => {
+        try {
+            await connection.invoke("SendVoteHub");
+        } catch (err) {
+            console.error(err);
         }
     })
         .catch(error => alert(error));

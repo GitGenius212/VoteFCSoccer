@@ -41,6 +41,7 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/Candidat.js"></script>
     <script>
         
@@ -73,6 +74,13 @@
         if (data) {
             // Faites quelque chose avec les données si nécessaire
             //console.log(data);
+        }
+    })
+    .then(async () => {
+        try {
+            await connection.invoke("SendCandidatHub");
+        } catch (err) {
+            console.error(err);
         }
     })
     .catch(error => alert(error.message));

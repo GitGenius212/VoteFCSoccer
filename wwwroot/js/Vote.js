@@ -1,6 +1,8 @@
 const uri = '/api/VoteApi';
 let $votes = $("#votes");
-
+//SignalR--------------------
+var connection = new signalR.HubConnectionBuilder().withUrl("/voteHub").build(); 
+//SignalR--------------------
 function getVotes() {
   fetch(uri)
     .then(response => response.json())
@@ -19,10 +21,17 @@ function _displayCount(itemCount) {
   document.getElementById('counter').innerText = `${itemCount} ${name}`;
 }
  */
+
+connection.on("VoteChange", () => {
+  getVotes();
+});
+
+connection.start().catch(err => console.error("SignalR Connection Error: ", err));
+
 function _displayItems(data) {
 
   //_displayCount(data.length);
-
+  $votes.empty();
   data.forEach(vote => {
     // Votre logique de création de template ici
     let template = `<tr>

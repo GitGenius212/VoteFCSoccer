@@ -34,7 +34,7 @@
 
 @section Scripts{
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
-    
+    <script src="~/js/Vote.js"></script>
     <script>
         var id = document.getElementById('id').value;
         const deleteUrl = `/api/VoteApi/${id}`
@@ -67,6 +67,13 @@
             console.log(data);
         }
         
+    })
+    .then(async () => {
+        try {
+            await connection.invoke("SendVoteHub");
+        } catch (err) {
+            console.error(err);
+        }
     })
     .catch(error => alert(error.message));
 });

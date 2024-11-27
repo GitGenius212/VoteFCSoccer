@@ -42,7 +42,8 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Candidat.js"></script>
     <script>
     
         document.getElementById("saveCandidat").addEventListener("click", function (event) {
@@ -83,6 +84,13 @@
         }
 
         
+    })
+    .then(async () => {
+        try {
+            await connection.invoke("SendCandidatHub");
+        } catch (err) {
+            console.error(err);
+        }
     })
     .catch(error => alert("Il y'a une erreur"));
 

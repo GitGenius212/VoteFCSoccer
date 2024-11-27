@@ -3,7 +3,7 @@ namespace VoteFCSoccer.Hubs
 {
     public class CandidatHub : Hub
     {
-        public async Task SendMessage()
+        public async Task SendCandidatHub()
         {
         await Clients.All.SendAsync("CandidatChange");
         }

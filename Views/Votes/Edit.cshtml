@@ -37,6 +37,7 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
      <script src="~/js/signalr/dist/browser/signalr.js"></script>
+     <script src="~/js/Vote.js"></script>
     <script>
         document.getElementById("editVote").addEventListener("click", function (event) {
             event.preventDefault();
@@ -75,6 +76,13 @@
 
         // Vérifier la connection de signalR
         
+    })
+    .then(async () => {
+        try {
+            await connection.invoke("SendVoteHub");
+        } catch (err) {
+            console.error(err);
+        }
     })
     .catch(error => alert("Il y'a une erreur" + error));
 

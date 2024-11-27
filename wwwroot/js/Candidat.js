@@ -1,5 +1,8 @@
 const uri = 'api/CandidatApi';
 let $candidats = $("#candidats");
+//SignalR--------------------
+var connection = new signalR.HubConnectionBuilder().withUrl("/candidatHub").build(); 
+//SignalR--------------------
 
 function getCandidats() {
   fetch(uri)
@@ -19,11 +22,15 @@ function getCandidats() {
   //----------------DeleteCandidat---------------------
  //------------------------------------------------
 
+ connection.on("CandidatChange", () => {
+  getCandidats();
+});
 
+connection.start().catch(err => console.error("SignalR Connection Error: ", err));
 
 function _displayItems(data) {
   //_displayCount(data.length);
-
+  $candidats.empty();
   data.forEach(candidat => {
     let template = `<tr>
         <td>${candidat.candidatId}</td>
