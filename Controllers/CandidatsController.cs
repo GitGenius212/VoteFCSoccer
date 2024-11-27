@@ -22,13 +22,7 @@ namespace VoteFCSoccer.Controllers
         // GET: Candidats
         public async Task<IActionResult> Index()
         {
-            var query = from candidat in _context.Set<Candidat>() 
-                         join libelleVote in _context.Set<LibelleVote>()
-                         on candidat.LibelleId equals libelleVote.LibelleId
-                         select new LibelleVoteCandidatViewModel 
-                         {Candidat = candidat, LibelleVote = libelleVote};
-
-            return View(await query.ToListAsync());
+            return View();
         }
 
         // GET: Candidats/Details/5
@@ -67,22 +61,7 @@ namespace VoteFCSoccer.Controllers
             return View();
         }
 
-        // POST: Candidats/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CandidatId,Nom,Logo,LibelleId")] Candidat candidat)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(candidat);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", candidat.LibelleId);
-            return View(candidat);
-        }
+        
 
         // GET: Candidats/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -101,41 +80,7 @@ namespace VoteFCSoccer.Controllers
             return View(candidat);
         }
 
-        // POST: Candidats/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CandidatId,Nom,Logo,LibelleId")] Candidat candidat)
-        {
-            if (id != candidat.CandidatId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(candidat);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CandidatExists(candidat.CandidatId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["LibelleId"] = new SelectList(_context.Set<LibelleVote>(), "LibelleId", "Libelle", candidat.LibelleId);
-            return View(candidat);
-        }
+        
 
         // GET: Candidats/Delete/5
         public async Task<IActionResult> Delete(int? id)
@@ -156,24 +101,6 @@ namespace VoteFCSoccer.Controllers
             return View(candidat);
         }
 
-        // POST: Candidats/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var candidat = await _context.Candidat.FindAsync(id);
-            if (candidat != null)
-            {
-                _context.Candidat.Remove(candidat);
-            }
-
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
-
-        private bool CandidatExists(int id)
-        {
-            return _context.Candidat.Any(c => c.CandidatId == id);
-        }
+        
     }
 }

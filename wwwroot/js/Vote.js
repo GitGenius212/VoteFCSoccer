@@ -1,4 +1,4 @@
-const uri = 'api/VoteApi';
+const uri = '/api/VoteApi';
 let $votes = $("#votes");
 
 function getVotes() {
@@ -7,13 +7,14 @@ function getVotes() {
     .then(data => _displayItems(data))
     .catch(error => console.error('Unable to get votes.', error));
 }
-/* 
-function addItem() {
-  const addNameTextbox = document.getElementById('add-name');
 
-  const item = {
-    isComplete: false,
-    name: addNameTextbox.value.trim()
+function addVote() {
+  const votant = document.getElementById('votant');
+  const candidatId = document.getElementById('candidatId');
+
+  const vote = {
+    votant: votant.value.trim(),
+    candidatId: candidatId
   };
 
   fetch(uri, {
@@ -22,57 +23,50 @@ function addItem() {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(item)
+    body: JSON.stringify(vote)
   })
     .then(response => response.json())
-    .then(() => {
-        getVotes();
-      addNameTextbox.value = '';
-    })
-    .catch(error => console.error('Unable to add item.', error));
+    .then(() => console.log())
+    .catch(error => console.error('Unable to add vote.', error));
 }
 
-function deleteItem(id) {
+function deleteVote(id) {
   fetch(`${uri}/${id}`, {
     method: 'DELETE'
   })
-  .then(() => getVotes())
+  .then(() => console.log("le vote a été supprimé correctement"))
   .catch(error => console.error('Unable to delete item.', error));
 }
 
-function displayEditForm(id) {
-  const item = votes.find(item => item.id === id);
-  
-  document.getElementById('edit-name').value = item.name;
-  document.getElementById('edit-id').value = item.id;
-  document.getElementById('edit-isComplete').checked = item.isComplete;
-  document.getElementById('editForm').style.display = 'block';
-}
 
-function updateItem() {
-  const itemId = document.getElementById('edit-id').value;
-  const item = {
-    id: parseInt(itemId, 10),
-    isComplete: document.getElementById('edit-isComplete').checked,
-    name: document.getElementById('edit-name').value.trim()
+function updateVote() {
+  const voteId = document.getElementById('edit-id').value;
+  const votant = document.getElementById('votant');
+  const candidatId = document.getElementById('candidatId');
+
+  const vote = {
+    voteId : parseInt(voteId, 10),
+    votant: votant.value.trim(),
+    candidatId: parseInt(candidatId, 10),
   };
 
-  fetch(`${uri}/${itemId}`, {
+  fetch(`${uri}/${voteId}`, {
     method: 'PUT',
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(item)
+    body: JSON.stringify(vote)
   })
-  .then(() => getVotes())
-  .catch(error => console.error('Unable to update item.', error));
+  .then(() => console.log())
+  .catch(error => alert('Unable to update item.' + error));
 
-  closeInput();
+  
 
   return false;
 }
 
+/*
 function closeInput() {
   document.getElementById('editForm').style.display = 'none';
 }

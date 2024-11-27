@@ -33,6 +33,7 @@ namespace VoteFCSoccer.Controllers
                     CandidatId = c.CandidatId,
                     Nom = c.Nom,
                     Logo = c.Logo,
+                    LibelleId = c.LibelleVote.LibelleId, 
                     Votes = c.Votes != null ? c.Votes : null, 
                     LibelleVote = c.LibelleVote != null ? c.LibelleVote.Libelle : "N/A"
                 })

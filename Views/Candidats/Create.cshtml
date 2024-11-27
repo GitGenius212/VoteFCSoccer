@@ -8,7 +8,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form  asp-action="api/CandidatApi" onsubmit="addCandidat()" >
+        <form  asp-action="Create" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nom" class="control-label"></label>
@@ -26,7 +26,7 @@
                 <select asp-for="LibelleId" id="libelleId" class ="form-control" asp-items="ViewBag.LibelleId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" id="createdbCandidat" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -40,4 +40,31 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/Candidat.js"></script>
+    <script>
+        document.getElementById("createdbCandidat").addEventListener("click", function (event) {
+            event.preventDefault();
+    var nom = document.getElementById("nom").value;
+    var logo = document.getElementById("logo").value;
+    var libelleId = document.getElementById("libelleId").value;
+
+    const candidat = {
+    nom: nom,
+    logo: logo,
+    libelleId: libelleId 
+};
+
+    fetch('/api/CandidatApi', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(candidat)
+    })
+    .then(response => response.json())
+    .catch(error => alert(error));
+
+    
+});
+    </script>
 }

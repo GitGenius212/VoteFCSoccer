@@ -11,7 +11,7 @@
     <h4>LibelleVote</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class = "col-sm-2" onsubmit="">
             @Html.DisplayNameFor(model => model.Libelle)
         </dt>
         <dd class = "col-sm-10">
@@ -19,9 +19,9 @@
         </dd>
     </dl>
     
-    <form asp-action="Delete">
-        <input type="hidden" id="id" asp-for="LibelleId" />
-        <input type="submit" value="Delete" class="btn btn-danger" onclick="delete()"/> |
+    <form asp-action="Delete" >
+        <input type="hidden" id="delete-id" asp-for="LibelleId" />
+        <input type="submit" value="Delete" class="btn btn-danger" id="deleteLibelleV" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
@@ -30,9 +30,32 @@
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/LibelleVote.js"></script>
     <script>
-        function delete() {
-            let id = document.getElementById('id')
-            deleteLibelleVote(id)
+        var id = document.getElementById("delete-id").value;
+        const deleteUrl = `/api/LibelleVoteApi/${id}`
+        document.getElementById("deleteLibelleV").addEventListener("click", function (event) {
+        event.preventDefault();
+    fetch( deleteUrl, {
+        method: "DELETE",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
         }
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        // Vérifie si la réponse est vide avant de la convertir en JSON
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.indexOf('application/json') !== -1) {
+            return response.json();
+        } else {
+            return null; // Si la réponse est vide
+        }
+    })
+    
+    .catch(error => alert(error.message));
+});
     </script>
+    
 }

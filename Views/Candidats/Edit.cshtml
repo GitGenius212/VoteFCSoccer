@@ -12,7 +12,7 @@
     <div class="col-md-4">
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="CandidatId" />
+            <input type="hidden" id="id" asp-for="CandidatId" />
             <div class="form-group">
                 <label asp-for="Nom" class="control-label"></label>
                 <input asp-for="Nom" class="form-control" />
@@ -30,7 +30,7 @@
                 <span asp-validation-for="LibelleId" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" id="saveCandidat" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -42,4 +42,53 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        document.getElementById("saveCandidat").addEventListener("click", function (event) {
+            event.preventDefault();
+            var nom = document.getElementById("Nom").value;
+            var logo = document.getElementById("Logo").value;
+            var libelleId = document.getElementById("LibelleId").value;
+            var candidatId = document.getElementById("id").value;
+
+    const candidat = {
+        candidatId: parseInt(candidatId, 10),
+        nom: nom,
+        logo: logo,
+        libelleId: parseInt(libelleId, 10), 
+    };
+
+    fetch(`/api/CandidatApi/${candidatId}`, {
+        method: "PUT",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(candidat)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok. Status: ' + response.status + ' - ' + response.statusText);
+        }
+        console.log(response);
+        //return response.json(); // Convertit la réponse en JSON
+    })
+    .then(data => {
+        if (data !== null) {
+            console.log("API Data:", data);
+        }
+
+        // Vérifier la connection de signalR
+        @* if (connection.state === "Connected") {
+            connection.invoke("SendEquipe").catch(function (err) {
+                return console.error(err.toString());
+            });
+        } else {
+            console.error("Il n'y a pas de connection.");
+        } *@
+    })
+    .catch(error => alert("Il y'a une erreur"));
+
+    
+});
+    </script>
 }

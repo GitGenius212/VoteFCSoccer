@@ -1,4 +1,4 @@
-const uri = 'api/LibelleVoteApi';
+const uri = '/api/LibelleVoteApi';
 let $libelleVotes = $("#libelleVotes");
 
 function getLibelleVotes() {
@@ -8,36 +8,7 @@ function getLibelleVotes() {
     .catch(error => console.error('Unable to get libelleVotes.', error));
 }
 
-function addLibelleVote() {
-  const libelle = document.getElementById('libelle');
 
-  const libelleVote = {
-    libelle : libelle
-  };
-
-  fetch(uri, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(libelleVote)
-  })
-    .then(response => response.json())
-    .then(() => {
-        getLibelleVotes();
-      addNameTextbox.value = '';
-    })
-    .catch(error => console.error('Unable to add item.', error));
-}
-
-function deleteLibelleVote(id) {
-  fetch(`${uri}/${id}`, {
-    method: 'DELETE'
-  })
-  .then(() => console.log(""))
-  .catch(error => console.error('Unable to delete item.', error));
-}
 
 function updateLibelleVote() {
   const LibelleVoteId = document.getElementById('edit-id').value;

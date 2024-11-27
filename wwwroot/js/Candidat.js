@@ -8,80 +8,18 @@ function getCandidats() {
     .catch(error => console.error('Unable to get candidats.', error));
 }
 
- function addCandidat() {
-  var nom = document.getElementById("nom").value;
-    var logo = document.getElementById("logo").value;
-    var libelleId = document.getElementById("libelleId").value;
+ //----------------AddCandidat---------------------
+ 
+ //------------------------------------------------
 
-  const candidat = {
-    nom: nom,
-    logo: logo,
-    libelleId: libelleId 
-};
+  //----------------PutCandidat---------------------
+ //------------------------------------------------
 
-  fetch(uri, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(candidat)
-  })
-    .then(response => response.json())
-    .catch(error => console.error('Unable to add item.', error));
-}
 
-/*
-function deleteItem(id) {
-  fetch(`${uri}/${id}`, {
-    method: 'DELETE'
-  })
-  .then(() => getCandidats())
-  .catch(error => console.error('Unable to delete item.', error));
-}
+  //----------------DeleteCandidat---------------------
+ //------------------------------------------------
 
-function displayEditForm(id) {
-  const item = candidats.find(item => item.id === id);
-  
-  document.getElementById('edit-name').value = item.name;
-  document.getElementById('edit-id').value = item.id;
-  document.getElementById('edit-isComplete').checked = item.isComplete;
-  document.getElementById('editForm').style.display = 'block';
-}
 
-function updateItem() {
-  const itemId = document.getElementById('edit-id').value;
-  const item = {
-    id: parseInt(itemId, 10),
-    isComplete: document.getElementById('edit-isComplete').checked,
-    name: document.getElementById('edit-name').value.trim()
-  };
-
-  fetch(`${uri}/${itemId}`, {
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(item)
-  })
-  .then(() => getCandidats())
-  .catch(error => console.error('Unable to update item.', error));
-
-  closeInput();
-
-  return false;
-}
-
-function closeInput() {
-  document.getElementById('editForm').style.display = 'none';
-}
-
-function _displayCount(itemCount) {
-  const name = (itemCount === 1) ? 'to-do' : 'to-dos';
-
-  document.getElementById('counter').innerText = `${itemCount} ${name}`;
-} */
 
 function _displayItems(data) {
   //_displayCount(data.length);
