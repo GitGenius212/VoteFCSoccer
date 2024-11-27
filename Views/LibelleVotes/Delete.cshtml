@@ -30,6 +30,7 @@
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/LibelleVote.js"></script>
     <script>
+
         var id = document.getElementById("delete-id").value;
         const deleteUrl = `/api/LibelleVoteApi/${id}`
         document.getElementById("deleteLibelleV").addEventListener("click", function (event) {
@@ -55,8 +56,15 @@
         } else {
             return null; // Si la réponse est vide
         }
+        
     })
-    
+    .then(async () => {
+        try {
+            await connection.invoke("SendLibelleVote");
+        } catch (err) {
+            console.error(err);
+        }
+    })
     .catch(error => alert(error.message));
 });
     </script>

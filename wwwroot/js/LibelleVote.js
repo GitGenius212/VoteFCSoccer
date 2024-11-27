@@ -1,7 +1,10 @@
 const uri = '/api/LibelleVoteApi';
 let $libelleVotes = $("#libelleVotes");
-
+//SignalR--------------------
+var connection = new signalR.HubConnectionBuilder().withUrl("/libelleVoteHub").build(); 
+//SignalR--------------------
 function getLibelleVotes() {
+  // Start the connection.
   fetch(uri)
     .then(response => response.json())
     .then(data => _displayItems(data))
@@ -9,8 +12,11 @@ function getLibelleVotes() {
 }
 
 
+connection.on("LibelleVoteChange", () => {
+  getLibelleVotes();
+});
 
-
+connection.start().catch(err => console.error("SignalR Connection Error: ", err));
 
 
 
@@ -23,7 +29,7 @@ function _displayCount(itemCount) {
 function _displayItems(data) {
 
   //_displayCount(data.length);
-
+  $libelleVotes.empty(); 
   data.forEach(libelleVote => {
     // Votre logique de création de template ici
     let template = `<tr>
@@ -35,7 +41,10 @@ function _displayItems(data) {
         <a href="/LibelleVotes/Details/${libelleVote.libelleId}">Details</a>
       </td>
     </tr>`;
-    $libelleVotes.append($(template));
+    
+      
+      $libelleVotes.append($(template));         
+    
   });
 
 }

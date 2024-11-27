@@ -34,6 +34,7 @@
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/LibelleVote.js"></script>
     <script>
+
         document.getElementById("editLibelleVote").addEventListener("click", function (event) {
             event.preventDefault();
             const LibelleVoteId = document.getElementById('edit-id').value;
@@ -62,7 +63,15 @@
         if (data !== null) {
             //console.log("API Data:", data);
         }
+        
 
+    })
+    .then(async () => {
+        try {
+            await connection.invoke("SendLibelleVote");
+        } catch (err) {
+            console.error(err);
+        }
     })
     .catch(error => alert("Il y'a une erreur"));
 });

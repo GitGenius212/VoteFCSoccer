@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\school\\8A2023\\AppWeb3\\Examens\\Examen2\\VoteFCSoccer\\VoteFCSoccer.csproj": {}
+    "D:\\school\\ProjetsStage\\ProjetAppWeb3\\VoteFCSoccer\\VoteFCSoccer.csproj": {}
   },
   "projects": {
-    "D:\\school\\8A2023\\AppWeb3\\Examens\\Examen2\\VoteFCSoccer\\VoteFCSoccer.csproj": {
+    "D:\\school\\ProjetsStage\\ProjetAppWeb3\\VoteFCSoccer\\VoteFCSoccer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\school\\8A2023\\AppWeb3\\Examens\\Examen2\\VoteFCSoccer\\VoteFCSoccer.csproj",
+        "projectUniqueName": "D:\\school\\ProjetsStage\\ProjetAppWeb3\\VoteFCSoccer\\VoteFCSoccer.csproj",
         "projectName": "VoteFCSoccer",
-        "projectPath": "D:\\school\\8A2023\\AppWeb3\\Examens\\Examen2\\VoteFCSoccer\\VoteFCSoccer.csproj",
+        "projectPath": "D:\\school\\ProjetsStage\\ProjetAppWeb3\\VoteFCSoccer\\VoteFCSoccer.csproj",
         "packagesPath": "C:\\Users\\hp\\.nuget\\packages\\",
-        "outputPath": "D:\\school\\8A2023\\AppWeb3\\Examens\\Examen2\\VoteFCSoccer\\obj\\",
+        "outputPath": "D:\\school\\ProjetsStage\\ProjetAppWeb3\\VoteFCSoccer\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\hp\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -44,25 +44,29 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SQLite": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[8.0.0, )"
+              "version": "[9.0.0, )"
+            },
+            "NSwag.AspNetCore": {
+              "target": "Package",
+              "version": "[14.2.0, )"
             }
           },
           "imports": [

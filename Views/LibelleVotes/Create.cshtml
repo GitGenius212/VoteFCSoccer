@@ -58,6 +58,13 @@
             alert("Erreur lors de la création du libelleVote.");
         }
     })
+    .then(async () => {
+        try {
+            await connection.invoke("SendLibelleVote");
+        } catch (err) {
+            console.error(err);
+        }
+    })
     .catch(error => alert(error));
 });
     </script>

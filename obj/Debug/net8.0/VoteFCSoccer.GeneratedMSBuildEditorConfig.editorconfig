@@ -17,99 +17,99 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = VoteFCSoccer
 build_property.RootNamespace = VoteFCSoccer
-build_property.ProjectDir = d:\school\8A2023\AppWeb3\Examens\Examen2\VoteFCSoccer\
+build_property.ProjectDir = D:\school\ProjetsStage\ProjetAppWeb3\VoteFCSoccer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 8.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = d:\school\8A2023\AppWeb3\Examens\Examen2\VoteFCSoccer
+build_property.MSBuildProjectDirectory = D:\school\ProjetsStage\ProjetAppWeb3\VoteFCSoccer
 build_property._RazorSourceGeneratorDebug = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Equipes/Create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXF1aXBlc1xDcmVhdGUuY3NodG1s
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Candidats/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Equipes/Delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXF1aXBlc1xEZWxldGUuY3NodG1s
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Candidats/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Equipes/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXF1aXBlc1xEZXRhaWxzLmNzaHRtbA==
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Candidats/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Equipes/Edit.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXF1aXBlc1xFZGl0LmNzaHRtbA==
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Candidats/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Equipes/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRXF1aXBlc1xJbmRleC5jc2h0bWw=
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Candidats/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2FuZGlkYXRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Home/Index.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Home/Privacy.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/LibelleVotes/Create.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/LibelleVotes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGliZWxsZVZvdGVzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/LibelleVotes/Delete.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/LibelleVotes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGliZWxsZVZvdGVzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/LibelleVotes/Details.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/LibelleVotes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGliZWxsZVZvdGVzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/LibelleVotes/Edit.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/LibelleVotes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGliZWxsZVZvdGVzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/LibelleVotes/Index.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/LibelleVotes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGliZWxsZVZvdGVzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Shared/Error.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Votes/Create.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Votes/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZXNcQ3JlYXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Votes/Delete.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Votes/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZXNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Votes/Details.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Votes/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZXNcRGV0YWlscy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Votes/Edit.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Votes/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZXNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Votes/Index.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Votes/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVm90ZXNcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/_ViewImports.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/_ViewStart.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[d:/school/8A2023/AppWeb3/Examens/Examen2/VoteFCSoccer/Views/Shared/_Layout.cshtml]
+[D:/school/ProjetsStage/ProjetAppWeb3/VoteFCSoccer/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zir2ykoj08

@@ -11,7 +11,12 @@ builder.Services.AddDbContext<MvcVoteCandidatContext>(options =>
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//SignalR-------------------
 builder.Services.AddSignalR();
+//SignalR-------------------
+
+
 builder.Services.AddControllersWithViews()
                 .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 //Swagger OpenApi----------------------------
@@ -49,8 +54,8 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-    app.MapHub<VoteHub>("/VoteHub");
-    app.MapHub<CandidatHub>("/CandidatHub");
-    app.MapHub<LibelleVoteHub>("/LibelleVoteHub");
+    app.MapHub<VoteHub>("/voteHub");
+    app.MapHub<CandidatHub>("/candidatHub");
+    app.MapHub<LibelleVoteHub>("/libelleVoteHub");
 
 app.Run();

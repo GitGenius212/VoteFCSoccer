@@ -3,7 +3,7 @@ namespace VoteFCSoccer.Hubs
 {
     public class LibelleVoteHub : Hub
     {
-        public async Task SendMessage()
+        public async Task SendLibelleVote()
         {
         await Clients.All.SendAsync("LibelleVoteChange");
         }
