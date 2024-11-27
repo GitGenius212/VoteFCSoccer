@@ -41,9 +41,9 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/Candidat.js"></script>
     <script>
+        
         var id = document.getElementById("id").value;
         const deleteUrl = `/api/CandidatApi/${id}`
         document.getElementById("deletebCandidat").addEventListener("click", function (event) {
@@ -71,7 +71,6 @@
             // Faites quelque chose avec les données si nécessaire
             console.log(data);
         }
-        //connection.invoke("SendEquipe").catch(err => console.error(err.toString()));
     })
     .catch(error => alert(error.message));
     event.preventDefault();

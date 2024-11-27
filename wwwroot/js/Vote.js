@@ -8,64 +8,6 @@ function getVotes() {
     .catch(error => console.error('Unable to get votes.', error));
 }
 
-function addVote() {
-  const votant = document.getElementById('votant');
-  const candidatId = document.getElementById('candidatId');
-
-  const vote = {
-    votant: votant.value.trim(),
-    candidatId: candidatId
-  };
-
-  fetch(uri, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(vote)
-  })
-    .then(response => response.json())
-    .then(() => console.log())
-    .catch(error => console.error('Unable to add vote.', error));
-}
-
-function deleteVote(id) {
-  fetch(`${uri}/${id}`, {
-    method: 'DELETE'
-  })
-  .then(() => console.log("le vote a été supprimé correctement"))
-  .catch(error => console.error('Unable to delete item.', error));
-}
-
-
-function updateVote() {
-  const voteId = document.getElementById('edit-id').value;
-  const votant = document.getElementById('votant');
-  const candidatId = document.getElementById('candidatId');
-
-  const vote = {
-    voteId : parseInt(voteId, 10),
-    votant: votant.value.trim(),
-    candidatId: parseInt(candidatId, 10),
-  };
-
-  fetch(`${uri}/${voteId}`, {
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(vote)
-  })
-  .then(() => console.log())
-  .catch(error => alert('Unable to update item.' + error));
-
-  
-
-  return false;
-}
-
 /*
 function closeInput() {
   document.getElementById('editForm').style.display = 'none';

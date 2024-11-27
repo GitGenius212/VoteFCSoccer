@@ -42,7 +42,11 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    
     <script>
+        const connection = new signalR.HubConnectionBuilder().withUrl("/CandidatHub").build();
+        connection.start()
+        .catch(function (err) { return console.error(err.tostring()) })
         document.getElementById("saveCandidat").addEventListener("click", function (event) {
             event.preventDefault();
             var nom = document.getElementById("Nom").value;
@@ -77,14 +81,7 @@
             console.log("API Data:", data);
         }
 
-        // Vérifier la connection de signalR
-        @* if (connection.state === "Connected") {
-            connection.invoke("SendEquipe").catch(function (err) {
-                return console.error(err.toString());
-            });
-        } else {
-            console.error("Il n'y a pas de connection.");
-        } *@
+        
     })
     .catch(error => alert("Il y'a une erreur"));
 
