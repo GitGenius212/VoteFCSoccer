@@ -1,34 +1,32 @@
 @model VoteFCSoccer.Models.Candidat
 
-@{
-    ViewData["Title"] = "Create";
-}
+
 
 <h1>Create</h1>
 
-<h4>Equipe</h4>
+<h4>Candidat</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form  asp-action="Create" >
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Nom" class="control-label"></label>
-                <input asp-for="Nom" class="form-control" />
+                <input asp-for="Nom" class="form-control" id="nom"/>
                 <span asp-validation-for="Nom" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Logo" class="control-label"></label>
-                <input asp-for="Logo" class="form-control" />
+                <input asp-for="Logo" class="form-control" id="logo"/>
                 <span asp-validation-for="Logo" class="text-danger"></span>
             </div>
             
             <div class="form-group">
                 <label asp-for="LibelleId" class="control-label">Libelles</label>
-                <select asp-for="LibelleId" class ="form-control" asp-items="ViewBag.LibelleId"></select>
+                <select asp-for="LibelleId" id="libelleId" class ="form-control" asp-items="ViewBag.LibelleId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" id="createdbCandidat" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -40,4 +38,41 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Candidat.js"></script>
+    <script>
+        document.getElementById("createdbCandidat").addEventListener("click", function (event) {
+            event.preventDefault();
+    var nom = document.getElementById("nom").value;
+    var logo = document.getElementById("logo").value;
+    var libelleId = document.getElementById("libelleId").value;
+
+    const candidat = {
+    nom: nom,
+    logo: logo,
+    libelleId: libelleId 
+};
+
+    fetch('/api/CandidatApi', {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(candidat)
+    })
+    .then(response => {
+        if (response.ok) {
+            // Redirection vers l'Index après succès
+            window.location.href = '/Candidats';
+        } else {
+            // Affiche un message d'erreur si la création échoue
+            alert("Erreur lors de la création du candidat.");
+        }
+    })
+    .catch(error => alert(error));
+
+    
+});
+    </script>
 }

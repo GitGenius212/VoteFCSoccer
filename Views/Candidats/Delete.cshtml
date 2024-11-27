@@ -8,7 +8,7 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>Equipe</h4>
+    <h4>Candidat</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -33,8 +33,50 @@
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="CandidatId" />
-        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <input type="hidden" id="id" asp-for="CandidatId" />
+        <input type="submit" value="Delete" id="deletebCandidat" class="btn btn-danger" /> |
         <a asp-action="Index">Back to List</a>
     </form>
 </div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="~/js/Candidat.js"></script>
+    <script>
+        
+        var id = document.getElementById("id").value;
+        const deleteUrl = `/api/CandidatApi/${id}`
+        document.getElementById("deletebCandidat").addEventListener("click", function (event) {
+    fetch(deleteUrl, {
+        method: "DELETE",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            window.location.href = '/Candidats';
+            
+        } else{
+            throw new Error('Network response was not ok.');
+        }
+        // Vérifie si la réponse est vide avant de la convertir en JSON
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.indexOf('application/json') !== -1) {
+            return response.json();
+        } else {
+            return null; // Si la réponse est vide
+        }
+    })
+    .then(data => {
+        if (data) {
+            // Faites quelque chose avec les données si nécessaire
+            //console.log(data);
+        }
+    })
+    .catch(error => alert(error.message));
+    event.preventDefault();
+});
+    </script>
+}

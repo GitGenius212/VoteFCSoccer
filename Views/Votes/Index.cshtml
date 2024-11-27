@@ -31,31 +31,15 @@
             <th></th>
         </tr>
     </thead>
-    <tbody>
-@foreach (var item in Model) { 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vote.voteId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Vote.Votant)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Candidat.CandidatId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Candidat.Nom)
-            </td>
+    <tbody id="votes">
 
-            <td>
-                <img width="100px" height="100px" src="images/@item.Candidat.Logo" alt="Logo de l'équipe" />
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Vote.voteId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Vote.voteId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Vote.voteId">Delete</a>
-            </td>
-        </tr>
-}
     </tbody>
 </table>
+
+@section Scripts{
+    <script src="~/js/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/Vote.js"></script>
+    <script type="text/javascript">
+        getVotes();
+    </script>
+}

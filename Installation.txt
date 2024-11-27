@@ -25,8 +25,9 @@ dotnet ef database update
 
 //Génerer les API
 dotnet aspnet-codegenerator controller -name CandidatAPIController -async -api -m Candidat -dc VoteFCSoccer.Data.MvcVoteCandidatContext -outDir Controllers
-dotnet aspnet-codegenerator controller -name EquipesAPIController -async -api -m Equipe -dc VoteFCSoccer.Data.MvcVoteCandidatContext -outDir Controllers
 dotnet aspnet-codegenerator controller -name LibelleVoteAPIController -async -api -m LibelleVote -dc VoteFCSoccer.Data.MvcVoteCandidatContext -outDir Controllers
+dotnet aspnet-codegenerator controller -name VoteAPIController -async -api -m Vote -dc VoteFCSoccer.Data.MvcVoteCandidatContext -outDir Controllers
+
 
 
 dotnet tool uninstall -g Microsoft.Web.LibraryManager.Cli
@@ -36,9 +37,7 @@ libman install @microsoft/signalr@latest -p unpkg -d wwwroot/js/signalr --files 
 
 using A23EvALouragli.Hubs;
 builder.Services.AddSignalR();
-builder.Services.AddControllers()
-    .AddJsonOptions(options =>
-    {
-        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+builder.Services.AddControllersWithViews()
+                .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);rve;
         // Autres configurations si nécessaires
     });
