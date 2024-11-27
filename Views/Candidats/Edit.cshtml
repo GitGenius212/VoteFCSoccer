@@ -6,7 +6,7 @@
 
 <h1>Edit</h1>
 
-<h4>Equipe</h4>
+<h4>Candidat</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -44,9 +44,7 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     
     <script>
-        const connection = new signalR.HubConnectionBuilder().withUrl("/CandidatHub").build();
-        connection.start()
-        .catch(function (err) { return console.error(err.tostring()) })
+    
         document.getElementById("saveCandidat").addEventListener("click", function (event) {
             event.preventDefault();
             var nom = document.getElementById("Nom").value;
@@ -70,15 +68,18 @@
         body: JSON.stringify(candidat)
     })
     .then(response => {
-        if (!response.ok) {
+        if (response.ok) {
+            window.location.href = '/Candidats';
+            
+        } else {
             throw new Error('Network response was not ok. Status: ' + response.status + ' - ' + response.statusText);
         }
-        console.log(response);
+        //console.log(response);
         //return response.json(); // Convertit la réponse en JSON
     })
     .then(data => {
         if (data !== null) {
-            console.log("API Data:", data);
+            //console.log("API Data:", data);
         }
 
         

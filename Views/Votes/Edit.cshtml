@@ -60,10 +60,12 @@
         body: JSON.stringify(vote)
     })
     .then(response => {
-        if (!response.ok) {
+        if (response.ok) {
+            window.location.href = '/Votes';
+        } else {
             throw new Error('Network response was not ok. Status: ' + response.status + ' - ' + response.statusText);
         }
-        console.log(response);
+        //console.log(response);
         //return response.json(); // Convertit la réponse en JSON
     })
     .then(data => {

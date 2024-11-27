@@ -10,27 +10,7 @@ function getLibelleVotes() {
 
 
 
-function updateLibelleVote() {
-  const LibelleVoteId = document.getElementById('edit-id').value;
-  const libelleVote = {
-    libelleId: parseInt(LibelleVoteId, 10),
-    libelle: document.getElementById('libelle').value.trim()
-  };
 
-  fetch(`${uri}/${LibelleVoteId}`, {
-    method: 'PUT',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(libelleVote)
-  })
-  .then(() => console.log())
-  .catch(error => console.error('Unable to update libelleVote.', error));
-
-
-  return false;
-}
 
 
 

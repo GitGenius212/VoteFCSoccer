@@ -61,7 +61,15 @@
         },
         body: JSON.stringify(candidat)
     })
-    .then(response => response.json())
+    .then(response => {
+        if (response.ok) {
+            // Redirection vers l'Index après succès
+            window.location.href = '/Candidats';
+        } else {
+            // Affiche un message d'erreur si la création échoue
+            alert("Erreur lors de la création du candidat.");
+        }
+    })
     .catch(error => alert(error));
 
     

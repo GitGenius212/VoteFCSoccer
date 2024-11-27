@@ -42,7 +42,10 @@
         }
     })
     .then(response => {
-        if (!response.ok) {
+        if (response.ok) {
+            //response.json()
+            window.location.href = '/LibelleVotes';
+        } else {
             throw new Error('Network response was not ok.');
         }
         // Vérifie si la réponse est vide avant de la convertir en JSON

@@ -48,7 +48,9 @@
         }
     })
     .then(response => {
-        if (!response.ok) {
+        if (response.ok) {
+            window.location.href = '/Votes';
+        } else {
             throw new Error('Network response was not ok.');
         }
         // Vérifie si la réponse est vide avant de la convertir en JSON
