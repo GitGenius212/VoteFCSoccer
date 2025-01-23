@@ -1,40 +1,66 @@
 @model VoteFCSoccer.Models.LibelleVote
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modifier un Libellé";
 }
 
-<h1>Edit</h1>
+<div class="container mt-5">
+    <h1 class="text-primary">Modifier un Libellé</h1>
 
-<h4>LibelleVote</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" id="edit-id" asp-for="LibelleId" />
-            <div class="form-group">
-                <label asp-for="Libelle" class="control-label"></label>
-                <input id="libelle" asp-for="Libelle" class="form-control" />
-                <span asp-validation-for="Libelle" class="text-danger"></span>
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <div class="row justify-content-center">
+                    <form asp-action="Edit">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
+                        <input type="hidden" id="edit-id" asp-for="LibelleId" />
+                        <div class="form-group mb-3">
+                            <label asp-for="Libelle" class="form-label">Nom du Libellé</label>
+                            <input id="libelle" asp-for="Libelle" class="form-control" placeholder="Modifier le nom du libellé" />
+                            <span asp-validation-for="Libelle" class="text-danger"></span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" id="editLibelleVote" class="btn btn-primary">
+                                <i class="bi bi-save"></i> Enregistrer
+                            </button>
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Annuler
+                            </a>
+                            
+                        </div>
+                    </form>
+                
             </div>
-            <div class="form-group">
-                <input type="submit" value="Save" id="editLibelleVote" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<style>
+    .card {
+    border-radius: 15px;
+}
+
+.btn-success {
+    box-shadow: 0px 4px 6px rgba(40, 167, 69, 0.4);
+    transition: transform 0.2s ease;
+}
+
+.btn-success:hover {
+    transform: scale(1.05);
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+</style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/LibelleVote.js"></script>
     <script>
-
         document.getElementById("editLibelleVote").addEventListener("click", function (event) {
             event.preventDefault();
             const LibelleVoteId = document.getElementById('edit-id').value;
@@ -42,38 +68,31 @@
                 libelleId: parseInt(LibelleVoteId, 10),
                 libelle: document.getElementById('libelle').value.trim()
             };
-    fetch(`/api/LibelleVoteApi/${LibelleVoteId}`, {
-        method: "PUT",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(libelleVote)
-    })
-    .then(response => {
-        if (response.ok) {
-            window.location.href = '/LibelleVotes';
-        } else {
-            throw new Error('Network response was not ok. Status: ' + response.status + ' - ' + response.statusText);
-        }
-        //console.log(response);
-        //return response.json(); // Convertit la réponse en JSON
-    })
-    .then(data => {
-        if (data !== null) {
-            //console.log("API Data:", data);
-        }
-        
 
-    })
-    .then(async () => {
-        try {
-            await connection.invoke("SendLibelleVote");
-        } catch (err) {
-            console.error(err);
-        }
-    })
-    .catch(error => alert("Il y'a une erreur"));
-});
+            fetch(`/api/LibelleVoteApi/${LibelleVoteId}`, {
+                method: "PUT",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(libelleVote)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirection vers l'Index après succès
+                    window.location.href = '/LibelleVotes';
+                } else {
+                    throw new Error('Erreur réseau. Statut : ' + response.status + ' - ' + response.statusText);
+                }
+            })
+            .then(async () => {
+                try {
+                    await connection.invoke("SendLibelleVote");
+                } catch (err) {
+                    console.error(err);
+                }
+            })
+            .catch(error => alert("Une erreur est survenue lors de la mise à jour du libellé."));
+        });
     </script>
 }

@@ -1,32 +1,61 @@
 @model VoteFCSoccer.Models.LibelleVote
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Créer un Libellé";
 }
 
-<h1>Create</h1>
+<div class="container my-5">
+    <h1 class="text-center text-primary mb-4">Créer un Nouveau Libellé</h1>
 
-<h4>LibelleVote</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create" >
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Libelle" class="control-label"></label>
-                <input id="libelle" asp-for="Libelle" class="form-control" />
-                <span asp-validation-for="Libelle" class="text-danger"></span>
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h4 class="card-title text-secondary mb-3">Informations sur le Libellé</h4>
+            <hr />
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none"></div>
+                        <div class="form-group mb-3">
+                            <label asp-for="Libelle" class="form-label">Nom du Libellé</label>
+                            <input id="libelle" asp-for="Libelle" class="form-control" placeholder="Entrez le nom du libellé" />
+                            <span asp-validation-for="Libelle" class="text-danger"></span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <a asp-action="Index" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Retour à la liste
+                            </a>
+                            <button type="submit" id="createLibelleV" class="btn btn-primary">
+                                <i class="bi bi-check-lg"></i> Créer
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <input type="submit" id="createLibelleV" value="Create" class="btn btn-primary" onclick=""/>
-            </div>
-        </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+<style>
+    .card {
+    border-radius: 15px;
+}
+
+.btn-primary {
+    box-shadow: 0px 4px 6px rgba(0, 123, 255, 0.3);
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.btn-outline-secondary:hover {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+</style>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
@@ -34,38 +63,36 @@
     <script src="~/js/LibelleVote.js"></script>
     <script>
         document.getElementById("createLibelleV").addEventListener("click", function (event) {
-    var libelle = document.getElementById("libelle").value.trim();
-    event.preventDefault();
+            var libelle = document.getElementById("libelle").value.trim();
+            event.preventDefault();
 
-    const libelleVote = {
-        libelle: libelle,
-    };
+            const libelleVote = { libelle: libelle };
 
-    fetch('/api/LibelleVoteApi', {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(libelleVote)
-    })
-    .then(response => {
-        if (response.ok) {
-            // Redirection vers l'Index après succès
-            window.location.href = '/LibelleVotes';
-        } else {
-            // Affiche un message d'erreur si la création échoue
-            alert("Erreur lors de la création du libelleVote.");
-        }
-    })
-    .then(async () => {
-        try {
-            await connection.invoke("SendLibelleVote");
-        } catch (err) {
-            console.error(err);
-        }
-    })
-    .catch(error => alert(error));
-});
+            fetch('/api/LibelleVoteApi', {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(libelleVote)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Redirection vers l'Index après succès
+                    window.location.href = '/LibelleVotes';
+                } else {
+                    // Affiche un message d'erreur si la création échoue
+                    alert("Erreur lors de la création du libelleVote.");
+                }
+            })
+            .then(async () => {
+                try {
+                    await connection.invoke("SendLibelleVote");
+                } catch (err) {
+                    console.error(err);
+                }
+            })
+            .catch(error => alert(error));
+        });
     </script>
 }

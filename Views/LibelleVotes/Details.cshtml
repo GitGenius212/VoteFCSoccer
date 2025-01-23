@@ -1,64 +1,62 @@
 @model VoteFCSoccer.Models.LibelleVote
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Détails du Libellé";
 }
 
-<h1>Details</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Détails du Libellé</h1>
+        
+    </div>
 
-<div>
-    <h4>LibelleVote</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Libelle)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Libelle)
-        </dd>
-    </dl>
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Informations générales</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold">Libellé</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Libelle)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-5">
+        <h3 class="text-secondary">Candidats associés</h3>
+        <table class="table table-bordered table-hover mt-3">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Logo</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.Candidats)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.CandidatId)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Nom)</td>
+                        <td>
+                            <img src="../../images/@item.Logo" alt="Logo du candidat" class="img-thumbnail" style="max-height: 100px;" />
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.LibelleId" class="btn btn-warning">
+            <i class="fas fa-edit"></i> Modifier
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="fas fa-list"></i> Retour à la liste
+        </a>
+    </div>
 </div>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                ID
-            </th>
-            <th>
-                Nom
-            </th>
-
-            <th>
-                Logo
-            </th>
-            
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Candidats) { 
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CandidatId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nom)
-            </td>
-
-            <td>
-                <img width="100px" height="100px" src="../../images/@item.Logo" alt="Logo de l'équipe" />
-                
-            </td>
-
-        </tr>
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 }
-    </tbody>
-</table>
-
-
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.LibelleId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
