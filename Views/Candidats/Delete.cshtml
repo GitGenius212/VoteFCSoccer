@@ -20,11 +20,11 @@
 
                     <dt class="col-sm text-end fw-bold">Logo</dt>
                     <dd class="col-sm-8">
-                        <img src="@Html.DisplayFor(model => model.Logo)" alt="Logo" class="img-thumbnail" style="max-height: 150px;" />
+                        <img src="../../images/@Html.DisplayFor(model => model.Logo)" alt="Logo" class="rounded" style="max-height: 150px;" />
                     </dd>
 
                     <dt class="col-sm-4 text-end fw-bold">Libelle Vote</dt>
-                    <dd class="col-sm-8">@Html.DisplayFor(model => model.LibelleVote.LibelleId)</dd>
+                    <dd class="col-sm-8">@Html.DisplayFor(model => model.LibelleVote.Libelle)</dd>
                 </dl>
             </div>
             
