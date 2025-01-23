@@ -2,72 +2,89 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Bienvenue à l'application de votes</h1>
-    
+<div class="text-center py-5 bg-warning text-white">
+    <h1 class="display-4 fw-bold">Bienvenue à l'application de votes</h1>
+    <p class="lead">Votez pour votre équipe préférée et découvrez les résultats en direct !</p>
 </div>
 
-<div class="ratio ratio-21x9">
-    <iframe src="https://www.youtube.com/embed/JS6QG3Km820"></iframe>
-  </div>
+<div class="ratio ratio-21x9 mb-5">
+    <iframe class="rounded" src="https://www.youtube.com/embed/JS6QG3Km820" allowfullscreen></iframe>
+</div>
 
-<div class="container-sm mt-3 bg-dark">
+<div class="container mt-5">
     <!-- Carousel -->
-<div id="image" class="carousel slide" data-bs-ride="carousel">
+    <div id="image" class="carousel slide shadow-lg rounded overflow-hidden" data-bs-ride="carousel">
 
-  <!-- Indicators/dots -->
-  <div class="carousel-indicators">
-    <button type="button" data-bs-target="#image" data-bs-slide-to="0" class="active"></button>
-    <button type="button" data-bs-target="#image" data-bs-slide-to="1"></button>
-    <button type="button" data-bs-target="#image" data-bs-slide-to="2"></button>
-  </div>
-  
-  <!-- The slideshow/carousel -->
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-        <a href="/Candidats">
-            <img src="images/PSG.png" alt="PSG" class="mx-auto d-block img-fluid" style="width: auto; height: 600px;" data-bs-toggle="tooltip" title="Clic!">
-        </a>
-      <div class="carousel-caption">
-        <h3>Paris Saint-Germain</h3>
-        <p class="text-dark">Championnat de France</p>
-      </div>
+        <!-- Indicators/dots -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#image" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#image" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#image" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- The slideshow/carousel -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="/Candidats">
+                    <img src="images/PSG.png" alt="PSG" class="d-block w-100 img-fluid" style="max-height: 400px; object-fit: contain;" data-bs-toggle="tooltip" title="Clic!">
+                </a>
+                <div class="carousel-caption bg-dark bg-opacity-75 rounded p-3">
+                    <h3>Paris Saint-Germain</h3>
+                    <p class="mb-0">Championnat de France</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="/Candidats">
+                    <img src="images/OM.png" alt="OM" class="d-block w-100 img-fluid" style="max-height: 400px; object-fit: contain;" data-bs-toggle="tooltip" title="Clic!">
+                </a>
+                <div class="carousel-caption bg-dark bg-opacity-75 rounded p-3">
+                    <h3>Olympique de Marseille</h3>
+                    <p class="mb-0">Championnat de France</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <a href="/Candidats">
+                    <img src="images/RM.png" alt="RM" class="d-block w-100 img-fluid" style="max-height: 400px; object-fit: contain;" data-bs-toggle="tooltip" title="Clic!">
+                </a>
+                <div class="carousel-caption bg-dark bg-opacity-75 rounded p-3">
+                    <h3>Real Madrid</h3>
+                    <p class="mb-0">Championnat d'Espagne</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Left and right controls/icons -->
+        <button class="carousel-control-prev custom-arrow" type="button" data-bs-target="#image" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Précédent</span>
+        </button>
+        <button class="carousel-control-next custom-arrow" type="button" data-bs-target="#image" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Suivant</span>
+        </button>
     </div>
-    <div class="carousel-item">
-        <a href="/Candidats">
-            <img src="images/OM.png" alt="OM" class="mx-auto d-block img-fluid" style="width: auto; height: 600px;" data-bs-toggle="tooltip" title="Clic!">
-        </a>
-      <div class="carousel-caption">
-        <h3>Olympique de Marseille</h3>
-        <p>Championnat de France</p>
-      </div> 
-    </div>
-    <div class="carousel-item">
-        <a href="/Candidats">
-            <img src="images/RM.png" alt="RM" class=" mx-auto d-block img-fluid" style="height: 600px;" data-bs-toggle="tooltip" title="Clic!">
-        </a>
-      
-      <div class="carousel-caption">
-        <h3 class="text-dark">Réal Madrid</h3>
-        <p>Championnat d'espagne</p>
-      </div>  
-    </div>
-  </div>
-  
-  <!-- Left and right controls/icons -->
-  <button class="carousel-control-prev" type="button" data-bs-target="#image" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon"></span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#image" data-bs-slide="next">
-    <span class="carousel-control-next-icon"></span>
-  </button>
-</div>
 </div>
 
+<!-- Tooltip Activation -->
 <script>
-var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+    });
 </script>
-  
+
+<style>
+    /* Styles pour rendre les flèches visibles */
+    .custom-arrow .carousel-control-prev-icon,
+    .custom-arrow .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5); /* Couleur semi-transparente */
+        border-radius: 50%; /* Arrondir les icônes */
+        width: 3rem; /* Ajuster la taille */
+        height: 3rem;
+    }
+
+    .custom-arrow .carousel-control-prev-icon:hover,
+    .custom-arrow .carousel-control-next-icon:hover {
+        background-color: rgba(0, 0, 0, 0.8); /* Couleur plus foncée au survol */
+    }
+</style>
