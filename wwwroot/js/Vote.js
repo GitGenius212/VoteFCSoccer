@@ -41,9 +41,9 @@ function _displayItems(data) {
       <td>${vote.candidat.nom}</td>
       <td><img width="100px" height="100px" src="images/${vote.candidat.logo}" alt="Logo du candidat" /></td>
       <td>
-        <a href="/Votes/Edit/${vote.voteId}">Edit</a> |
-        <a href="/Votes/Delete/${vote.voteId}">Delete</a>
-        <a href="/Votes/Details/${vote.voteId}">Details</a>
+        <a href="/Votes/Edit/${vote.voteId}">Modifier</a> |
+        <a href="/Votes/Delete/${vote.voteId}">Supprimer</a> |
+        <a href="/Votes/Details/${vote.voteId}">Détails</a> 
       </td>
     </tr>`;
     $votes.append($(template));

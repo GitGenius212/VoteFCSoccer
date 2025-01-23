@@ -36,9 +36,9 @@ function _displayItems(data) {
       <td>${libelleVote.libelleId}</td>
       <td>${libelleVote.libelle}</td>
       <td>
-        <a href="/LibelleVotes/Edit/${libelleVote.libelleId}">Edit</a> |
-        <a href="/LibelleVotes/Delete/${libelleVote.libelleId}">Delete</a>
-        <a href="/LibelleVotes/Details/${libelleVote.libelleId}">Details</a>
+        <a href="/LibelleVotes/Edit/${libelleVote.libelleId}">Modifier</a> |
+        <a href="/LibelleVotes/Delete/${libelleVote.libelleId}">Supprimer</a> |
+        <a href="/LibelleVotes/Details/${libelleVote.libelleId}">Détails</a> 
       </td>
     </tr>`;
     

@@ -39,9 +39,9 @@ function _displayItems(data) {
         <td>${candidat.libelleVote ? candidat.libelleId : 'N/A'}</td>
         <td>${candidat.libelleVote ? candidat.libelleVote : 'N/A'}</td>
         <td>
-            <a href="/Candidats/Edit/${candidat.candidatId}">Edit</a> |
-            <a href="/Candidats/Details/${candidat.candidatId}">Details</a>
-            <a href="/Candidats/Delete/${candidat.candidatId}">Delete</a>
+            <a href="/Candidats/Edit/${candidat.candidatId}">Modifier</a> |
+            <a href="/Candidats/Delete/${candidat.candidatId}">Supprimer</a> |
+            <a href="/Candidats/Details/${candidat.candidatId}">Détails</a> 
         </td>
     </tr>`;
     $candidats.append($(template));
