@@ -1,85 +1,92 @@
 @model VoteFCSoccer.Models.Candidat
 
+@{
+    ViewData["Title"] = "Créer un Candidat";
+}
 
-
-<h1>Create</h1>
-
-<h4>Candidat</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form  asp-action="Create" >
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Nom" class="control-label"></label>
-                <input asp-for="Nom" class="form-control" id="nom"/>
-                <span asp-validation-for="Nom" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Logo" class="control-label"></label>
-                <input asp-for="Logo" class="form-control" id="logo"/>
-                <span asp-validation-for="Logo" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="LibelleId" class="control-label">Libelles</label>
-                <select asp-for="LibelleId" id="libelleId" class ="form-control" asp-items="ViewBag.LibelleId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" id="createdbCandidat" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Créer un Nouveau Candidat</h1>
+        <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </a>
     </div>
-</div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <h4 class="card-title text-info">Informations du Candidat</h4>
+            <hr />
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger" role="alert"></div>
+                
+                <div class="mb-3">
+                    <label asp-for="Nom" class="form-label fw-bold">Nom du Candidat</label>
+                    <input asp-for="Nom" class="form-control" id="nom" placeholder="Entrez le nom du candidat" />
+                    <span asp-validation-for="Nom" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="Logo" class="form-label fw-bold">Logo du Candidat</label>
+                    <input asp-for="Logo" class="form-control" id="logo" placeholder="Entrez l'URL du logo" />
+                    <span asp-validation-for="Logo" class="text-danger"></span>
+                </div>
+                
+                <div class="mb-3">
+                    <label asp-for="LibelleId" class="form-label fw-bold">Libellé</label>
+                    <select asp-for="LibelleId" id="libelleId" class="form-select" asp-items="ViewBag.LibelleId"></select>
+                </div>
+                
+                <div class="d-grid gap-2">
+                    <button type="submit" id="createdbCandidat" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Créer
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/Candidat.js"></script>
     <script>
         document.getElementById("createdbCandidat").addEventListener("click", function (event) {
             event.preventDefault();
-    var nom = document.getElementById("nom").value;
-    var logo = document.getElementById("logo").value;
-    var libelleId = document.getElementById("libelleId").value;
+            var nom = document.getElementById("nom").value.trim();
+            var logo = document.getElementById("logo").value.trim();
+            var libelleId = document.getElementById("libelleId").value;
 
-    const candidat = {
-    nom: nom,
-    logo: logo,
-    libelleId: libelleId 
-};
+            const candidat = {
+                nom: nom,
+                logo: logo,
+                libelleId: parseInt(libelleId, 10)
+            };
 
-    fetch('/api/CandidatApi', {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(candidat)
-    })
-    .then(response => {
-        if (response.ok) {
-            // Redirection vers l'Index après succès
-            window.location.href = '/Candidats';
-        } else {
-            // Affiche un message d'erreur si la création échoue
-            alert("Erreur lors de la création du candidat.");
-        }
-    })
-    .then(async () => {
-        try {
-            await connection.invoke("SendCandidatHub");
-        } catch (err) {
-            console.error(err);
-        }
-    })
-    .catch(error => alert(error));
-
-    
-});
+            fetch('/api/CandidatApi', {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(candidat)
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/Candidats';
+                } else {
+                    alert("Erreur lors de la création du candidat.");
+                }
+            })
+            .then(async () => {
+                try {
+                    await connection.invoke("SendCandidatHub");
+                } catch (err) {
+                    console.error(err);
+                }
+            })
+            .catch(error => alert("Erreur : " + error));
+        });
     </script>
 }

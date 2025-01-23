@@ -1,46 +1,43 @@
 @model IEnumerable<VoteFCSoccer.Models.LibelleVoteCandidatViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Liste des Candidats";
 }
 
-<h1>Index</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Liste des Candidats</h1>
+        <a asp-action="Create" class="btn btn-success btn-lg">
+            <i class="fas fa-plus-circle"></i> Ajouter un Candidat
+        </a>
+    </div>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Candidat.CandidatId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Candidat.Nom)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Candidat.Logo)
-            </th>
-            
-            <th>
-                @Html.DisplayNameFor(model => model.LibelleVote.LibelleId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LibelleVote.Libelle)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody id="candidats">
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <table class="table table-bordered table-hover align-middle text-center">
+                <thead class="table-primary">
+                    <tr>
+                        <th>#</th>
+                        <th>@Html.DisplayNameFor(model => model.Candidat.Nom)</th>
+                        <th>@Html.DisplayNameFor(model => model.Candidat.Logo)</th>
+                        <th>ID Libelle</th>
+                        <th>@Html.DisplayNameFor(model => model.LibelleVote.Libelle)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="candidats">
+                    <!-- Les lignes seront injectées dynamiquement -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-    </tbody>
-</table>
-
-@section Scripts{
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/Candidat.js"></script>
     <script type="text/javascript">
-        
-        getCandidats();
+        getCandidats(); // Fonction pour récupérer et afficher les candidats
     </script>
 }

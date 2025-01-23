@@ -1,100 +1,100 @@
 @model VoteFCSoccer.Models.Candidat
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modifier Candidat";
 }
 
-<h1>Edit</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Modifier Candidat</h1>
+        @* <a asp-action="Index" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Retour à la liste
+        </a> *@
+    </div>
 
-<h4>Candidat</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" id="id" asp-for="CandidatId" />
-            <div class="form-group">
-                <label asp-for="Nom" class="control-label"></label>
-                <input asp-for="Nom" class="form-control" />
-                <span asp-validation-for="Nom" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Logo" class="control-label"></label>
-                <input asp-for="Logo" class="form-control" />
-                <span asp-validation-for="Logo" class="text-danger"></span>
-            </div>
-            
-            <div class="form-group">
-                <label asp-for="LibelleId" class="control-label"></label>
-                <select asp-for="LibelleId" class="form-control" asp-items="ViewBag.LibelleId"></select>
-                <span asp-validation-for="LibelleId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" id="saveCandidat" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+    <div class="card shadow-lg">
+        <div class="card-body">
+            <form asp-action="Edit" class="needs-validation" novalidate>
+                <div asp-validation-summary="ModelOnly" class="alert alert-danger d-none" id="validationSummary"></div>
+                <input type="hidden" id="id" asp-for="CandidatId" />
+
+                <div class="mb-3">
+                    <label asp-for="Nom" class="form-label fw-bold">Nom</label>
+                    <input asp-for="Nom" class="form-control" />
+                    <span asp-validation-for="Nom" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Logo" class="form-label fw-bold">Logo (URL)</label>
+                    <input asp-for="Logo" class="form-control" />
+                    <span asp-validation-for="Logo" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="LibelleId" class="form-label fw-bold">Libelle</label>
+                    <select asp-for="LibelleId" class="form-select" asp-items="ViewBag.LibelleId"></select>
+                    <span asp-validation-for="LibelleId" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" id="saveCandidat" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Enregistrer
+                    </button>
+                    <a asp-action="Index" class="btn btn-outline-secondary">
+                        <i class="fas fa-times"></i> Annuler
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script src="~/js/signalr/dist/browser/signalr.js"></script>
     <script src="~/js/Candidat.js"></script>
     <script>
-    
         document.getElementById("saveCandidat").addEventListener("click", function (event) {
             event.preventDefault();
-            var nom = document.getElementById("Nom").value;
-            var logo = document.getElementById("Logo").value;
-            var libelleId = document.getElementById("LibelleId").value;
-            var candidatId = document.getElementById("id").value;
 
-    const candidat = {
-        candidatId: parseInt(candidatId, 10),
-        nom: nom,
-        logo: logo,
-        libelleId: parseInt(libelleId, 10), 
-    };
+            const nom = document.getElementById("Nom").value;
+            const logo = document.getElementById("Logo").value;
+            const libelleId = document.getElementById("LibelleId").value;
+            const candidatId = document.getElementById("id").value;
 
-    fetch(`/api/CandidatApi/${candidatId}`, {
-        method: "PUT",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(candidat)
-    })
-    .then(response => {
-        if (response.ok) {
-            window.location.href = '/Candidats';
-            
-        } else {
-            throw new Error('Network response was not ok. Status: ' + response.status + ' - ' + response.statusText);
-        }
-        //console.log(response);
-        //return response.json(); // Convertit la réponse en JSON
-    })
-    .then(data => {
-        if (data !== null) {
-            //console.log("API Data:", data);
-        }
+            const candidat = {
+                candidatId: parseInt(candidatId, 10),
+                nom: nom,
+                logo: logo,
+                libelleId: parseInt(libelleId, 10)
+            };
 
-        
-    })
-    .then(async () => {
-        try {
-            await connection.invoke("SendCandidatHub");
-        } catch (err) {
-            console.error(err);
-        }
-    })
-    .catch(error => alert("Il y'a une erreur"));
-
-    
-});
+            fetch(`/api/CandidatApi/${candidatId}`, {
+                method: "PUT",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(candidat)
+            })
+            .then(response => {
+                if (response.ok) {
+                    window.location.href = '/Candidats';
+                } else {
+                    throw new Error('Erreur réseau : ' + response.status + ' - ' + response.statusText);
+                }
+            })
+            .then(async () => {
+                try {
+                    await connection.invoke("SendCandidatHub");
+                } catch (err) {
+                    console.error(err);
+                }
+            })
+            .catch(error => {
+                alert("Erreur lors de l'enregistrement : " + error.message);
+            });
+        });
     </script>
 }
