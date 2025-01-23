@@ -1,35 +1,41 @@
 @model VoteFCSoccer.Models.Vote
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Créer un Vote";
 }
 
-<h1>Create</h1>
-
-<h4>Vote</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Index" >
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="Votant" class="control-label"></label>
-                <input asp-for="Votant" id="votant" class="form-control" />
-                <span asp-validation-for="Votant" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="CandidatId" class="control-label">Candidats</label>
-                <select asp-for="CandidatId" id="candidatId" class ="form-control" asp-items="ViewBag.CandidatId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" id="createVote" class="btn btn-primary" />
-            </div>
-        </form>
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white text-center">
+            <h1 class="card-title">Créer un Vote</h1>
+        </div>
+        <div class="card-body">
+            <h4 class="text-secondary mb-4">Informations sur le vote</h4>
+            <form asp-action="Index" id="voteForm">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <!-- Votant -->
+                <div class="mb-3">
+                    <label asp-for="Votant" class="form-label fw-bold">Nom du Votant</label>
+                    <input asp-for="Votant" id="votant" class="form-control border-primary" placeholder="Entrez le nom du votant" />
+                    <span asp-validation-for="Votant" class="text-danger"></span>
+                </div>
+                <!-- Candidat -->
+                <div class="mb-3">
+                    <label asp-for="CandidatId" class="form-label fw-bold">Sélectionnez un Candidat</label>
+                    <select asp-for="CandidatId" id="candidatId" class="form-select border-primary" asp-items="ViewBag.CandidatId"></select>
+                </div>
+                <!-- Boutons -->
+                <div class="text-center mt-4">
+                    <button type="submit" id="createVote" class="btn btn-primary btn-lg">
+                        <i class="fas fa-check-circle"></i> Créer
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary btn-lg ms-3">
+                        <i class="fas fa-arrow-left"></i> Retour à la Liste
+                    </a>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
 </div>
 
 @section Scripts {
@@ -38,43 +44,41 @@
     <script src="~/js/Vote.js"></script>
     <script>
         document.getElementById("createVote").addEventListener("click", function (event) {
-        event.preventDefault();
-        var candidatId = document.getElementById("candidatId").value;
-        var votant = document.getElementById("votant").value;
-        
-    
-        const vote = {
-            votant: votant, 
-            candidatId: candidatId
-            
-        };
-    
-        fetch('/api/VoteApi', {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(vote)
-        })
-        .then(response => {
-        if (response.ok) {
-            // Redirection vers l'Index après succès
-            window.location.href = '/Votes';
-        } else {
-            // Affiche un message d'erreur si la création échoue
-            alert("Erreur lors de la création du vote.");
-        }
-    })
-    .then(async () => {
-        try {
-            await connection.invoke("SendVoteHub");
-        } catch (err) {
-            console.error(err);
-        }
-    })
-        .catch(error => alert(error));
+            event.preventDefault();
 
-    });
+            const candidatId = document.getElementById("candidatId").value;
+            const votant = document.getElementById("votant").value.trim();
+
+            const vote = {
+                votant: votant,
+                candidatId: candidatId
+            };
+
+            fetch('/api/VoteApi', {
+                method: "POST",
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(vote)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Affiche une notification de succès avant la redirection
+                    //alert("Vote créé avec succès !");
+                    window.location.href = '/Votes';
+                } else {
+                    alert("Erreur lors de la création du vote. Veuillez réessayer.");
+                }
+            })
+            .then(async () => {
+                try {
+                    await connection.invoke("SendVoteHub");
+                } catch (err) {
+                    console.error(err);
+                }
+            })
+            .catch(error => alert(error.message));
+        });
     </script>
 }

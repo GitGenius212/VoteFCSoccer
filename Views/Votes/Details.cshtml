@@ -1,34 +1,44 @@
 @model VoteFCSoccer.Models.Vote
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Détails du Vote";
 }
 
-<h1>Details</h1>
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="text-primary">Détails du Vote</h1>
+        
+    </div>
 
-<div>
-    <h4>Vote</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Votant)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Votant)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Candidat)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Candidat.CandidatId)
-        </dd>
-    </dl>
+    <div class="card shadow-lg">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Informations générales</h3>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold">Votant</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Votant)</dd>
+
+                <dt class="col-sm-3 fw-bold">Candidat</dt>
+                <dd class="col-sm-9">
+                    <span class="badge bg-primary text-white">
+                        @Html.DisplayFor(model => model.Candidat.CandidatId)
+                    </span>
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between mt-4">
+        <a asp-action="Edit" asp-route-id="@Model?.voteId" class="btn btn-warning">
+            <i class="fas fa-edit"></i> Modifier
+        </a>
+        <a asp-action="Index" class="btn btn-outline-secondary">
+            <i class="fas fa-list"></i> Retour à la liste
+        </a>
+    </div>
 </div>
 
-
-
-
-<div>
-    <a asp-action="Edit" asp-route-id="@Model?.voteId">Edit</a> |
-    <a asp-action="Index">Back to List</a>
-</div>
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+}
