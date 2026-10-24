@@ -1,19 +1,24 @@
 # VoteFCSoccer
 
-## Description
+# Application de vote en ligne
 
-C'est une application web pour suivre un événement de vote. 
-L’application  permet de :
+## 📌 Contexte
+Projet de session : création d'un site web de vote permettant de gérer des votes et des candidats.
 
-1- créer/modifier/supprimer un vote et les candidats à ce vote
+## ⚙️ Fonctionnalités
+- **Gestion des votes et des candidats** : créer, ajouter, modifier ou supprimer ces informations.
+- **Vote** : les votants peuvent voter, et leurs noms sont enregistrés avec leur choix.
+- **Résultats** : affichage d'un résumé des résultats, avec la possibilité de voir qui a voté pour chaque candidat.
 
-2- afficher le vote et saisir des votes contenant les noms des votants.
+## 🛠️ Technologies
+`C#` · `ASP.NET Core` · `SQLite` · `SignalR` · `JavaScript`
 
-3- afficher une synthèse du vote présentant le total obtenu par chaque candidat
+## 🚀 Commandes
+- Lancer le projet (dans le terminal de VS Code) :
+  ```bash
+  dotnet run
+  ```
+- Ouvrir l'application dans le navigateur : [http://localhost:5251](http://localhost:5251)
 
-4- permettre de voir les noms des votants pour un candidat si l’on clique sur cette ce candidat à
-   partir de l’écran de synthèse.
-
-   Commandes :
-      dotnet run  (sur vscode)
-      localhost:5251 (sur le web)
+## ✅ Résultat
+Une application de vote complète et fonctionnelle, comme un système utilisé pour une élection scolaire.
